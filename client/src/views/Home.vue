@@ -1,13 +1,19 @@
 <template>
   <section class="home">
-    <p>This is the main page</p>
+    <!-- The write a new post thing -->
+    <Compose class="bg-gray-500" />
   </section>
 </template>
 
 <script>
 // @ is an alias to /src
 import { Component, Vue } from "vue-property-decorator";
+import Compose from "@/components/compose.vue";
 
-@Component
+@Component({
+  components: {
+    Compose
+  }
+})
 export default class Home extends Vue {}
 </script>
