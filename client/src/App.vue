@@ -1,8 +1,8 @@
 <template>
-  <section id="app">
-    <Navigation />
+  <section id="app" class="flex container mx-auto">
+    <Navigation class="w-1/5 bg-gray-300" />
 
-    <main>
+    <main class="w-4/5 bg-gray-100">
       <router-view />
     </main>
   </section>
