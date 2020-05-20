@@ -1,7 +1,7 @@
 <template>
   <form class="flex" id="post">
     <!-- Picture -->
-    <section>
+    <section class="w-3/12">
       <img
         src="http://placekitten.com/200/200"
         alt="Username"
@@ -10,10 +10,10 @@
     </section>
 
     <!-- Post -->
-    <section class="flex flex-col">
+    <section class="w-9/12 flex flex-col">
       <section>
         <textarea
-          type="text"
+          class="resize-none w-full"
           name="body"
           form="post"
           placeholder="Play sound of bird"
