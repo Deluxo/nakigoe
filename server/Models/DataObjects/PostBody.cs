@@ -4,7 +4,9 @@ using System.Collections.Generic;
 namespace Models.DataObjects
 {
   /// <summary>
-  /// This is the content for each post. The reason this is it's own is because not every post will contain content
+  /// This is the content for each post. 
+  /// The reason this is it's own is because not 
+  /// every post will contain content
   /// </summary>
   public class PostBody
   {

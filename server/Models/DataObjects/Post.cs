@@ -13,6 +13,10 @@ namespace Models.DataObjects
     public DateTime Date { get; set; }
     public PostType Type { get; set; }
     public PostBody Content { get; set; }
+    /// <summary>
+    /// If it's a reply this can be used to display the thread
+    /// </summary>
+    /// <value>The post replied to</value>
     public Post ReplyTo { get; set; }
     // public List<Like> Likes {get;set;}
   }
