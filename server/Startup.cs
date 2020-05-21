@@ -11,8 +11,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Server.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace server
+namespace Server
 {
   public class Startup
   {
@@ -26,7 +28,8 @@ namespace server
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-
+      services.AddDbContext<UserContext>(options =>
+        options.UseNpgsql("Host=localhost;Database=Nakigoe;Username=postgres;Password=1234"));
       services.AddControllers();
     }
 
