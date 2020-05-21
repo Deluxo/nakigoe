@@ -14,5 +14,6 @@ namespace Models.DataObjects
     public PostType Type { get; set; }
     public PostBody Content { get; set; }
     public Post ReplyTo { get; set; }
+    // public List<Like> Likes {get;set;}
   }
 }
