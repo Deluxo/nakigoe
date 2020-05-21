@@ -14,6 +14,6 @@ namespace Models.DataObjects
     public string Bio { get; set; }
     public DateTime BirthDate { get; set; }
 
-    public List<User> Following { get; set; }
+    public List<FollowedUser> Following { get; set; }
   }
 }

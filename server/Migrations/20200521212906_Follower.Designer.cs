@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Server.Data;
@@ -10,9 +11,10 @@ using Server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20200521212906_Follower")]
+    partial class Follower
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,10 +122,15 @@ namespace server.Migrations
                     b.Property<DateTime>("RegisteredAt")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("UserName")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Users");
                 });
@@ -131,7 +138,7 @@ namespace server.Migrations
             modelBuilder.Entity("Models.DataObjects.FollowedUser", b =>
                 {
                     b.HasOne("Models.DataObjects.User", "User")
-                        .WithMany("Following")
+                        .WithMany()
                         .HasForeignKey("UserId");
                 });
 
@@ -154,6 +161,13 @@ namespace server.Migrations
                 {
                     b.HasOne("Models.DataObjects.User", "User")
                         .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Models.DataObjects.User", b =>
+                {
+                    b.HasOne("Models.DataObjects.User", null)
+                        .WithMany("Following")
                         .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
