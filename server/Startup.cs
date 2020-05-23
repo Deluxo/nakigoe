@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Server.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Server
 {
@@ -30,6 +32,25 @@ namespace Server
     {
       services.AddDbContext<UserContext>(options =>
         options.UseNpgsql("Host=localhost;Database=Nakigoe;Username=postgres;Password=1234"));
+
+      var key = Encoding.ASCII.GetBytes("//TODO: Change me");
+      services.AddAuthentication(config =>
+      {
+        config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      }).AddJwtBearer(options =>
+      {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(key),
+          ValidateIssuer = false,
+          ValidateAudience = false
+        };
+      });
+
       services.AddControllers();
     }
 
