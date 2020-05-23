@@ -15,6 +15,7 @@ using Server.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Server.Services;
 
 namespace Server
 {
@@ -50,6 +51,8 @@ namespace Server
           ValidateAudience = false
         };
       });
+
+      services.AddScoped<IUSerService, UserService>();
 
       services.AddControllers();
     }
