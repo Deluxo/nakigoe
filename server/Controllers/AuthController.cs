@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Server.Services;
 using Server.Models.InputModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Server.Controllers
 {
+  [Authorize]
   [ApiController]
   [Route("[controller]")]
   public class AuthController : ControllerBase
@@ -20,6 +22,13 @@ namespace Server.Controllers
       _userService = userService;
     }
 
+    [HttpGet]
+    public IActionResult Get()
+    {
+      return Ok("Hello World");
+    }
+
+    [AllowAnonymous]
     [HttpPost]
     public IActionResult Post([FromBody] AuthModel authModel)
     {
