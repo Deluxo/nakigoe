@@ -37,7 +37,7 @@ namespace Server
       var key = Encoding.ASCII.GetBytes("//TODO: Change me");
       services.AddAuthentication(config =>
       {
-        config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
       }).AddJwtBearer(options =>
       {
