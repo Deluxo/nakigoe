@@ -25,7 +25,10 @@ namespace Server.Services
 
     public string Authenticate(string username, string password)
     {
-      var user = _context.Users.First(user => user.UserName == username);
+      var user = _context.Users.FirstOrDefault(user => user.UserName == username);
+
+      if (user == null)
+        return null;
 
       var comparePasswords = BCrypt.Net.BCrypt.Verify(user.Password, password);
 
