@@ -30,7 +30,7 @@ namespace Server.Services
       if (user == null)
         return null;
 
-      var comparePasswords = BCrypt.Net.BCrypt.Verify(user.Password, password);
+      var comparePasswords = BCrypt.Net.BCrypt.Verify(password, user.Password);
 
       if (!comparePasswords)
         return null;
