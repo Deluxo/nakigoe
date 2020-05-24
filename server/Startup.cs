@@ -72,6 +72,9 @@ namespace Server
       app.UseAuthentication();
       app.UseAuthorization();
 
+      var serviceProvider = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider;
+      DatabaseSeeder.CreateAdmin(serviceProvider);
+
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers();
