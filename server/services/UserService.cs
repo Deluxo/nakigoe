@@ -6,6 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System;
 using System.Text;
+using Models.DataObjects;
+using Server.Models.InputModels;
+
 
 namespace Server.Services
 {
@@ -35,12 +38,39 @@ namespace Server.Services
       if (!comparePasswords)
         return null;
 
+      return CreateToken(user.Id);
+    }
+
+    public string Register(RegisterModel registerModel)
+    {
+      var userExists = _context.Users.Any(user => user.UserName == registerModel.UserName);
+      if (userExists)
+        return null;
+
+      var user = new User
+      {
+        Id = new Guid(),
+        UserName = registerModel.UserName,
+        Password = BCrypt.Net.BCrypt.HashPassword(registerModel.Password),
+        RegisteredAt = DateTime.UtcNow,
+        DisplayName = registerModel.DisplayName,
+        BirthDate = registerModel.BirthDate
+      };
+
+      _context.Users.Add(user);
+      _context.SaveChangesAsync();
+
+      return CreateToken(user.Id);
+    }
+
+    static string CreateToken(Guid userId)
+    {
       var key = Encoding.ASCII.GetBytes("//TODO: Change me");
       var tokenHandler = new JwtSecurityTokenHandler();
       var tokenDescriptor = new SecurityTokenDescriptor
       {
         Subject = new System.Security.Claims.ClaimsIdentity(new Claim[] {
-          new Claim(ClaimTypes.Name, user.Id.ToString())
+          new Claim(ClaimTypes.Name, userId.ToString())
         }),
         Expires = DateTime.UtcNow.AddDays(1),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
