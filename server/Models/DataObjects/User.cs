@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Server.Models.Interfaces;
 
 namespace Models.DataObjects
 {
-  public class User
+  public class User : IUSer
   {
     public Guid Id { get; set; }
     public string UserName { get; set; }
