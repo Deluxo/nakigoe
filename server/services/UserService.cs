@@ -43,10 +43,7 @@ namespace Server.Services
 
     public string Register(RegisterModel registerModel)
     {
-      var userExists = _context.Users.Any(user => user.UserName == registerModel.UserName);
-      if (userExists)
-        return null;
-
+      // TODO: Consider adding a user creating class
       var user = new User
       {
         Id = new Guid(),
@@ -62,6 +59,9 @@ namespace Server.Services
 
       return CreateToken(user.Id);
     }
+
+    public bool IfUserExists(string userName) =>
+      _context.Users.Any(user => user.UserName == userName);
 
     static string CreateToken(Guid userId)
     {
