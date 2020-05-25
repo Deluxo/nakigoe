@@ -15,6 +15,8 @@ namespace Server.Services
   public interface IUSerService
   {
     string Authenticate(string username, string password);
+    string Register(RegisterModel registerModel);
+    bool IfUserExists(string userName);
   }
 
   public class UserService : IUSerService
