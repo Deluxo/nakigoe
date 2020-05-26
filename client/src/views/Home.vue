@@ -2,6 +2,8 @@
   <section class="home">
     <!-- The write a new post thing -->
     <Compose class="bg-gray-500" />
+
+    <!-- Posts should then go here -->
   </section>
 </template>
 
