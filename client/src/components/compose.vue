@@ -2,11 +2,7 @@
   <form class="flex" id="post">
     <!-- Picture -->
     <section class="w-3/12">
-      <img
-        src="http://placekitten.com/200/200"
-        alt="Username"
-        class="object-scale-down"
-      />
+      <img src="http://placekitten.com/200/200" alt="Username" class="object-scale-down" />
     </section>
 
     <!-- Post -->
@@ -22,11 +18,7 @@
       <section class="flex justify-between">
         <div class="self-center">Icons</div>
         <div class="self-center">
-          <button
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            鳴き声する
-          </button>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">鳴き声する</button>
         </div>
       </section>
     </section>
@@ -46,5 +38,5 @@ img {
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Compose extends Vue {}
+export default class Compose extends Vue { }
 </script>
