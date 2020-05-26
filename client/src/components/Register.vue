@@ -6,5 +6,5 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class Register extens Vue { }
+export default class Register extends Vue {}
 </script>
