@@ -12,8 +12,8 @@ import Compose from "@/components/compose.vue";
 
 @Component({
   components: {
-    Compose
-  }
+    Compose,
+  },
 })
 export default class Home extends Vue {}
 </script>
