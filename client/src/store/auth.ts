@@ -2,7 +2,7 @@ import {
   Module, VuexModule, Mutation, Action,
 } from "vuex-module-decorators";
 
-type User = Object;
+type User = Record<string, string>;
 
 @Module
 export default class Auth extends VuexModule {
@@ -30,7 +30,5 @@ export default class Auth extends VuexModule {
   }
 
   @Action
-  Register() {
-
-  }
+  Register() { }
 }
