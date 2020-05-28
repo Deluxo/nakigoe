@@ -9,5 +9,6 @@ namespace Server.Models.InputModels
     public string Password { get; set; }
     public DateTime BirthDate { get; set; }
     public string DisplayName { get; set; }
+    public string Bio { get; set; }
   }
 }

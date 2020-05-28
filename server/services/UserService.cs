@@ -53,7 +53,8 @@ namespace Server.Services
         Password = BCrypt.Net.BCrypt.HashPassword(registerModel.Password),
         RegisteredAt = DateTime.UtcNow,
         DisplayName = registerModel.DisplayName,
-        BirthDate = registerModel.BirthDate
+        BirthDate = registerModel.BirthDate,
+        Bio = registerModel.Bio
       };
 
       _context.Users.Add(user);
