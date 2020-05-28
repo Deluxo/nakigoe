@@ -23,8 +23,10 @@ export default class Auth extends VuexModule {
   }
 
   @Mutation
-  Authenticate() {
-
+  Authenticate(token: string, user: User) {
+    this.IsAuthenticated = true;
+    this.Token = token;
+    this.User = user;
   }
 
   @Action
