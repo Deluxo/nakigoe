@@ -1,9 +1,10 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 
 import { HttpMethods } from "@/models/http-methods";
+import { API_URL } from "@/config/config";
 
 export type RequestData = {
-  url: string; 
+  endpoint: string; 
   method: HttpMethods; 
   body: any;
 }
@@ -14,21 +15,23 @@ export class ApiService {
     Authorization: "",
   }
 
+  private baseendpoint = API_URL;
+
   set Authorization(value: string) {
     this.headers.Authorization = `Bearer ${value}`;
   }
 
   private fetch(request: RequestData): Promise<Response> {
-    return fetch(request.url, {
+    return fetch(`${this.baseendpoint}${request.endpoint}`, {
       method: request.method.toString(), 
       headers: this.headers,
       body: JSON.stringify(request.body),
     });
   }
 
-  Get(url: string, body: any) {
+  Get(endpoint: string, body: any) {
     const request: RequestData = {
-      url, 
+      endpoint, 
       body,
       method: HttpMethods.Get,
     };
@@ -36,19 +39,9 @@ export class ApiService {
     return this.fetch(request);
   }
 
-  Post(url: string, body: any) {    
+  Post(endpoint: string, body: any) {    
     const request: RequestData = {
-      url, 
-      body,
-      method: HttpMethods.Get,
-    };
-    
-    return this.fetch(request);
-  }
-
-  Put(url: string, body: any) {
-    const request: RequestData = {
-      url, 
+      endpoint, 
       body,
       method: HttpMethods.Get,
     };
@@ -56,9 +49,9 @@ export class ApiService {
     return this.fetch(request);
   }
 
-  Delete(url: string, body: any) {
+  Put(endpoint: string, body: any) {
     const request: RequestData = {
-      url, 
+      endpoint, 
       body,
       method: HttpMethods.Get,
     };
@@ -66,9 +59,19 @@ export class ApiService {
     return this.fetch(request);
   }
 
-  Patch(url: string, body: any) {
+  Delete(endpoint: string, body: any) {
     const request: RequestData = {
-      url, 
+      endpoint, 
+      body,
+      method: HttpMethods.Get,
+    };
+    
+    return this.fetch(request);
+  }
+
+  Patch(endpoint: string, body: any) {
+    const request: RequestData = {
+      endpoint, 
       body,
       method: HttpMethods.Get,
     };
