@@ -1,8 +1,10 @@
 import {
-  Module, VuexModule, Mutation, Action,
+  Module, VuexModule, Mutation, Action, 
 } from "vuex-module-decorators";
+import { apiService } from "@/services/api-service";
 
 type User = Record<string, string>;
+type RegisterModel = string;
 
 @Module
 export default class Auth extends VuexModule {
@@ -30,5 +32,9 @@ export default class Auth extends VuexModule {
   }
 
   @Action
-  Register() { }
+  async Register(user: RegisterModel) {
+    const auth = await apiService.Post("/register", user);
+    const data = await auth.json();
+    console.log(data);
+  }
 }
