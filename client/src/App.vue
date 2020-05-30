@@ -1,6 +1,6 @@
 <template>
   <section id="app" class="flex container mx-auto">
-    <section v-if="loggedIn">
+    <section v-if="!loggedIn">
       <Register />
     </section>
 
