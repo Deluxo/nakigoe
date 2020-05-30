@@ -31,6 +31,6 @@ export default class Main extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/styles/styles.scss";
 </style>
