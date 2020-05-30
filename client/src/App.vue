@@ -30,3 +30,7 @@ export default class Main extends Vue {
   loggedIn = false;
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/styles/styles.scss";
+</style>
