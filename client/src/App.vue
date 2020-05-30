@@ -18,7 +18,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import Navigation from "@/components/navigation.vue";
-import Register from "@/components/Register.vue";
+import Register from "@/components/auth/register.vue";
 
 @Component({
   components: {
