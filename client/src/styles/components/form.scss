@@ -1,0 +1,19 @@
+.input {
+  @apply text-gray-700;
+  @apply bg-gray-200;
+  @apply rounded;
+  @apply px-2;
+
+  * {
+    @apply block;
+  }
+
+  label {
+    @apply text-gray-600;
+  }
+
+  input {
+    @apply bg-gray-200;
+    @apply text-xl;
+  }
+}
