@@ -11,6 +11,10 @@
         v-model="model.UserName">
     </section>
 
+    <InputComponent 
+      label="Password"
+      v-model="model.Password"/>
+
     <button 
       class="button button-blue"
       @click="printModel"
@@ -23,8 +27,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { RegisterModel, createEmptyModel } from "@/models";
+import InputComponent from "@/components/ui/input.vue";
 
-@Component
+@Component({
+  components: {
+    InputComponent,
+  },
+})
 export default class Register extends Vue {
   private model: RegisterModel | null = null;
 
