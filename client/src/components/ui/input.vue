@@ -1,19 +1,23 @@
 <template>
-  <section class="input login-details">
-    <label :for="`input-${label}`">{{ label }}</label>
-    <input 
-      :type="type" 
-      :name="`input-${label}`"
-      :id="`input-${label}`" 
-      placeholder="Your username"
-      @input="onInput($event.target.value)"
-      :maxlength="limit">
+  <section>
+    <div class="input login-details">
+      <label :for="`input-${label}`">{{ label }}</label>
+      <input 
+        :type="type" 
+        :name="`input-${label}`"
+        :id="`input-${label}`" 
+        placeholder="Your username"
+        @input="onInput($event.target.value)"
+        :maxlength="limit">
+    </div>
 
-    <span 
-      v-if="limit > 0"
-      class="text-xs text-right">
-      {{ length }} / {{ limit }}
+    <div class="flex justify-end">
+      <span 
+        v-if="limit > 0"
+        class="text-xs">
+        {{ length }} / {{ limit }}
     </span>
+    </div>
   </section>
 </template>
 
