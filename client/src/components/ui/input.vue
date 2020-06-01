@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="input login-details">
+    <div class="input-component login-details">
       <label :for="`input-${label}`">{{ label }}</label>
       <input 
         :type="type" 
