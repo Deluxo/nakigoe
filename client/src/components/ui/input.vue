@@ -6,7 +6,14 @@
       :name="`input-${label}`"
       :id="`input-${label}`" 
       placeholder="Your username"
-      @input="onInput($event.target.value)">
+      @input="onInput($event.target.value)"
+      :maxlength="limit">
+
+    <span 
+      v-if="limit > 0"
+      class="text-xs text-right">
+      {{ length }} / {{ limit }}
+    </span>
   </section>
 </template>
 
@@ -27,11 +34,15 @@ export default class Input extends Vue {
   @Prop({ default: 0 })
   limit!: number;
 
+  private length = 0;
+
   private onInput(value: string) {
     if (this.limit > 0)
-      if (value.length > this.limit)
+      if (value.length > this.limit) {
         return;
+      }
 
+    this.length = value.length;
     this.$emit("input", value);
   }
 }

@@ -13,7 +13,9 @@
 
     <InputComponent 
       label="Password"
-      v-model="model.Password"/>
+      v-model="model.Password"
+      type="text"
+      limit="50"/>
 
     <button 
       class="button button-blue"
