@@ -35,7 +35,7 @@ export default class Input extends Vue {
   @Prop({ default: "text" })
   type!: string;
 
-  @Prop({ default: 0 })
+  @Prop({ default: -1 })
   limit!: number;
 
   private length = 0;
