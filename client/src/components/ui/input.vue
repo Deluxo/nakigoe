@@ -6,7 +6,7 @@
         :type="type" 
         :name="`input-${label}`"
         :id="`input-${label}`" 
-        placeholder="Your username"
+        :placeholder="placeholder"
         @input="onInput($event.target.value)"
         :maxlength="limit">
     </div>
@@ -37,6 +37,9 @@ export default class Input extends Vue {
 
   @Prop({ default: -1 })
   limit!: number;
+
+  @Prop()
+  placeholder!: string;
 
   private length = 0;
 
