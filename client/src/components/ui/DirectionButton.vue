@@ -1,6 +1,5 @@
 <template>
-  <button 
-    class="button button-blue"
+  <button
     @click="emit"
     type="button">{{ directions[direction].name }}</button>
 </template>
