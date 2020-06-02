@@ -18,7 +18,12 @@ interface Directions {
   [key: string]: Direction;
 }
 
-const directions: Directions = { 
+@Component
+export default class Input extends Vue {
+  @Prop()
+  direction!: string;
+
+  private directions: Directions = { 
     forwards: { 
       name: "Next",
       number: 1,
@@ -28,11 +33,6 @@ const directions: Directions = {
       number: -1,
     },
   };
-
-@Component
-export default class Input extends Vue {
-  @Prop()
-  direction!: string;
 
   private validDirections = ["forwards", "backwards"];
   
@@ -48,7 +48,7 @@ export default class Input extends Vue {
   emit() {
       if (!this.direction) return; //
 
-    const direction = directions[this.direction].number;
+    const direction = this.directions[this.direction].number;
     this.$emit("click", direction);
   }
 }
