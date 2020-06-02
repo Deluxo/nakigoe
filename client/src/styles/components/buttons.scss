@@ -13,3 +13,9 @@
     @apply bg-blue-700;
   }
 }
+
+.button-small {
+  @apply text-xs;
+  @apply py-1;
+  @apply px-2;
+}

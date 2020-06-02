@@ -2,7 +2,9 @@
   <form>
     <h2 class="text-xl font-bold">Create your account</h2>
     
-    <section class="user-details">
+    <section 
+      class="user-details"
+      v-show="page == 0">
       <h3 class="font-bold">First we need some login details</h3>
 
       <InputComponent 
@@ -16,9 +18,15 @@
         placeholder="Password"
         v-model="model.Password"
         type="password"/>
+
+      <DirectionButtonPair 
+        @click="switchForm"
+        hide-backwards="true"/>
     </section>
 
-    <section class="personal-details">
+    <section 
+      class="personal-details"
+      v-show="page == 1">
       <h3 class="font-bold">Now for some information about you</h3>
 
       <InputComponent 
@@ -32,9 +40,14 @@
         placeholder="Birthdate"
         v-model="model.BirthDate"
         type="date"/>
+
+      <DirectionButtonPair 
+        @click="switchForm"/>
     </section>
 
-    <section class="bio">
+    <section 
+      class="bio"
+      v-show="page == 2">
       <h3>And finally a short description of yourself</h3>
       <InputComponent 
         label="Bio"
@@ -42,6 +55,10 @@
         type="textarea"
         v-model="model.Bio"
         limit="140"/>
+
+      <DirectionButtonPair 
+        @click="switchForm"
+        hide-forwards="true"/>
     </section>
    
     <button 
@@ -57,17 +74,26 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { RegisterModel, createEmptyModel } from "@/models";
 import InputComponent from "@/components/ui/input.vue";
+import DirectionButtonPair from "@/components/ui/direction-button-pair.vue";
 
 @Component({
   components: {
     InputComponent,
+    DirectionButtonPair,
   },
 })
 export default class Register extends Vue {
   private model: RegisterModel | null = null;
 
+  private page = 0;
+  private pageCount = 3;
   created() {
     this.model = createEmptyModel();
+  }
+
+  switchForm(direction: number) {
+    this.page = 
+      (this.page + direction + this.pageCount) % this.pageCount; // Mod with pagecount to prevent over and underflow
   }
 
   printModel() {
