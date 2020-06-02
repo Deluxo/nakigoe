@@ -2,7 +2,16 @@
   <section>
     <div class="input-component login-details">
       <label :for="`input-${label}`">{{ label }}</label>
+     
+      <Textarea 
+        v-if="type == `textarea`"
+        :name="`input-${label}`"
+        :id="`input-${label}`" 
+        :placeholder="placeholder"
+        @input="onInput($event.target.value)"
+        :maxlength="limit"/>
       <input 
+        v-else
         :type="type" 
         :name="`input-${label}`"
         :id="`input-${label}`" 
