@@ -18,7 +18,7 @@ interface Directions {
 }
 
 @Component
-export default class Input extends Vue {
+export default class DirectionButton extends Vue {
   @Prop()
   direction!: string;
 
