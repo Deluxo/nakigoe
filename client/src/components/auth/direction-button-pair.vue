@@ -1,14 +1,14 @@
 <template>
-  <section>
+  <section class="grid grid-cols-4 gap-3">
     <DirectionButton 
       v-if="!hideBackwards"
-      class="direction-button"
+      class="direction-button col-start-3"
       @click="switchForm"
       direction="backwards"/>
 
     <DirectionButton 
       v-if="!hideForwards"
-      class="direction-button"
+      class="direction-button col-start-4"
       @click="switchForm"
       direction="forwards"/>
   </section>
