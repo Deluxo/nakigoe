@@ -18,10 +18,6 @@
         placeholder="Password"
         v-model="model.Password"
         type="password"/>
-
-      <DirectionButtonPair 
-        @click="switchForm"
-        hide-backwards="true"/>
     </section>
 
     <section 
@@ -40,9 +36,6 @@
         placeholder="Birthdate"
         v-model="model.BirthDate"
         type="date"/>
-
-      <DirectionButtonPair 
-        @click="switchForm"/>
     </section>
 
     <section 
@@ -55,12 +48,15 @@
         type="textarea"
         v-model="model.Bio"
         limit="140"/>
-
-      <DirectionButtonPair 
-        @click="switchForm"
-        hide-forwards="true"/>
     </section>
    
+  <section>
+      <DirectionButtonPair 
+        @click="switchForm"
+        :hide-backwards="page == 0"
+        :hide-forwards="page == pageCount - 1"/>
+  </section>
+
     <button 
       class="button button-blue"
       @click="printModel"
