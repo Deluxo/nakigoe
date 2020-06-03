@@ -31,6 +31,10 @@ export default class DirectionButton extends Vue {
       name: "Previous",
       number: -1,
     },
+    finish: {
+      name: "Finish",
+      number: 2,
+    },
   };
 
   private validDirections = ["forwards", "backwards"];
