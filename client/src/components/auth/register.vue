@@ -53,6 +53,7 @@
   <section>
       <DirectionButtonPair 
         @click="switchForm"
+        @finish="register"
         :hide-backwards="page == 0"
         :hide-forwards="page == pageCount - 1"/>
   </section>
@@ -72,6 +73,12 @@ import { RegisterModel, createEmptyModel } from "@/models";
 import InputComponent from "@/components/ui/input.vue";
 import DirectionButtonPair from "@/components/auth/direction-button-pair.vue";
 
+enum Page {
+  UserDetails,
+  PersonalDetails,
+  Bio
+}
+
 @Component({
   components: {
     InputComponent,
@@ -88,8 +95,45 @@ export default class Register extends Vue {
   }
 
   switchForm(direction: number) {
+    // const lastPage = this.page === this.pageCount - 1;
+    // if (lastPage) // This is probably not needed
+    //   return;
+      
+    const isModelValid = this.validateModel();
+    if (!isModelValid)
+      return;
+
     this.page = 
       (this.page + direction + this.pageCount) % this.pageCount; // Mod with pagecount to prevent over and underflow
+  }
+
+  validateModel() {
+    switch (this.page) {
+      case Page.UserDetails:
+        return this.validateUserDetails();
+      case Page.PersonalDetails:
+        return this.validateModel();
+      case Page.Bio:
+        return this.validateBio();
+      default:
+        return false;
+    }
+  }
+
+  validateUserDetails() {
+    return false;
+  }
+
+  validatePersonalDetails() {
+    return false;
+  }
+
+  validateBio() {
+    return false;
+  }
+
+  register() {
+    console.log("regster");
   }
 
   printModel() {
