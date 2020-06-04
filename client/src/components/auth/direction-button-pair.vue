@@ -11,6 +11,13 @@
       class="direction-button col-start-4"
       @click="switchForm"
       direction="forwards"/>
+
+    <!-- I think when you can't go to the next you should be able to  -->
+    <DirectionButton 
+      v-if="hideForwards" 
+      class="direction-button col-start-4"
+      @click="finish"
+      direction="finish"/>
   </section>
 </template>
 
@@ -32,6 +39,10 @@ export default class DirectionButtonPair extends Vue {
 
   switchForm(direction: number) {
     this.$emit("click", direction);
+  }
+
+  finish() {
+    this.$emit("finish");
   }
 }
 </script>
