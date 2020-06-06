@@ -60,7 +60,9 @@ export default class Input extends Vue {
   @Prop()
   placeholder!: string;
 
-  @Prop()
+  @Prop({
+    default: () => () => true,
+  })
   CustomValidator!: (value: string) => boolean;
 
   private length = 0;
