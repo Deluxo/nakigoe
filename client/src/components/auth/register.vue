@@ -107,7 +107,7 @@ export default class Register extends Vue {
       (this.page + direction + this.pageCount) % this.pageCount; // Mod with pagecount to prevent over and underflow
   }
 
-  validateModel() {
+  validateModel(): boolean {
     switch (this.page) {
       case Page.UserDetails:
         return this.validateUserDetails();
