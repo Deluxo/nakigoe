@@ -11,7 +11,8 @@
         label="Username"
         placeholder="Your login name"
         v-model="model.UserName"
-        limit="50"/>
+        limit="50"
+        :custom-validator="validateUserName"/>
 
       <InputComponent 
         label="Password"
@@ -118,6 +119,20 @@ export default class Register extends Vue {
       default:
         return false;
     }
+  }
+
+  // validateUserName = (userName: string) => {
+  //   if (userName[0] === "i")
+  //     return true;
+    
+  //   return false;
+  // }
+
+  validateUserName(userName: string) {
+    if (userName[0] === "i")
+      return true;
+    
+    return false;
   }
 
   validateUserDetails() {

@@ -9,7 +9,8 @@
         :id="`input-${label}`" 
         :placeholder="placeholder"
         @input="onInput($event.target.value)"
-        :maxlength="limit"/>
+        :maxlength="limit"
+        :class="{error: !isValid}"/>
       <input 
         v-else
         :type="type" 
@@ -17,7 +18,8 @@
         :id="`input-${label}`" 
         :placeholder="placeholder"
         @input="onInput($event.target.value)"
-        :maxlength="limit">
+        :maxlength="limit"
+        :class="{error: !isValid}" />
     </div>
 
     <div class="flex justify-end">
@@ -50,13 +52,23 @@ export default class Input extends Vue {
   @Prop()
   placeholder!: string;
 
+  @Prop()
+  CustomValidator!: (value: string) => boolean;
+
   private length = 0;
+
+  private isValid = true;
 
   private onInput(value: string) {
     if (this.limit > 0)
       if (value.length > this.limit) {
         return;
       }
+
+    this.isValid = this.CustomValidator(value);
+    if (!this.isValid) {
+      return;
+    }
 
     this.length = value.length;
     this.$emit("input", value);
