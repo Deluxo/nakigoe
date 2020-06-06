@@ -10,7 +10,8 @@
         :placeholder="placeholder"
         @input="onInput($event.target.value)"
         :maxlength="limit"
-        :class="{error: !isValid}"/>
+        :class="{error: !isValid}"
+        @blur="validate($event.target.value)"/>
       <input 
         v-else
         :type="type" 
@@ -19,7 +20,8 @@
         :placeholder="placeholder"
         @input="onInput($event.target.value)"
         :maxlength="limit"
-        :class="{error: !isValid}" />
+        :class="{error: !isValid}"
+        @blur="validate($event.target.value)"/>
     </div>
 
     <div class="flex justify-end">
@@ -31,6 +33,12 @@
     </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.error {
+  color: red;
+}
+</style>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
@@ -59,16 +67,15 @@ export default class Input extends Vue {
 
   private isValid = true;
 
+  private validate(value: string) {
+    this.isValid = this.CustomValidator(value);
+  }
+
   private onInput(value: string) {
     if (this.limit > 0)
       if (value.length > this.limit) {
         return;
       }
-
-    this.isValid = this.CustomValidator(value);
-    if (!this.isValid) {
-      return;
-    }
 
     this.length = value.length;
     this.$emit("input", value);
