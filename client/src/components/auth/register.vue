@@ -12,7 +12,8 @@
         placeholder="Your login name"
         v-model="model.UserName"
         limit="50"
-        :custom-validator="validateUserName"/>
+        :custom-validator="validateUserName"
+        @onValidate="v => isUsernameValid = v"/>
 
       <InputComponent 
         label="Password"
@@ -87,6 +88,8 @@ enum Page {
   },
 })
 export default class Register extends Vue {
+  isUsernameValid = true;
+
   private model: RegisterModel | null = null;
 
   private page = 0;
@@ -136,6 +139,7 @@ export default class Register extends Vue {
   }
 
   validateUserDetails() {
+    console.log(this.isUsernameValid);
     return false;
   }
 

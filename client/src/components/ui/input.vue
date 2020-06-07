@@ -70,7 +70,11 @@ export default class Input extends Vue {
   private isValid = true;
 
   private validate(value: string) {
-    this.isValid = this.CustomValidator(value);
+    // const isMinLengthValid = this.checkMinLength(value); // TODO: Add in future if needed
+    const isCustomValid = this.CustomValidator(value);
+    this.isValid = isCustomValid;
+
+    this.$emit("onValidate", isCustomValid);
   }
 
   private onInput(value: string) {
