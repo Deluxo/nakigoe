@@ -4,7 +4,7 @@
       <label :for="`input-${label}`">{{ label }}</label>
      
       <Textarea 
-        v-if="type == `textarea`"
+        v-if="type === `textarea`"
         :name="`input-${label}`"
         :id="`input-${label}`" 
         :placeholder="placeholder"
@@ -29,7 +29,7 @@
         v-if="limit > 0"
         class="text-xs">
         {{ length }} / {{ limit }}
-    </span>
+      </span>
     </div>
   </section>
 </template>
