@@ -112,30 +112,25 @@ export default class Register extends Vue {
   }
 
   validateModel(): boolean {
-    switch (this.page) {
-      case Page.UserDetails:
-        return this.validateUserDetails();
-      case Page.PersonalDetails:
-        return this.validateModel();
-      case Page.Bio:
-        return this.validateBio();
-      default:
-        return false;
-    }
+    // switch (this.page) {
+    //   case Page.UserDetails:
+    //     return this.validateUserDetails();
+    //   case Page.PersonalDetails:
+    //     return this.validateModel();
+    //   case Page.Bio:
+    //     return this.validateBio();
+    //   default:
+    //     return false;
+    // }
+    return true;
   }
 
-  // validateUserName = (userName: string) => {
-  //   if (userName[0] === "i")
-  //     return true;
-    
-  //   return false;
-  // }
-
   validateUserName(userName: string) {
-    if (userName[0] === "i")
-      return true;
+    // if (userName[0] === "i")
+    //   return true;
     
-    return false;
+    // return false;
+    return true;
   }
 
   validateUserDetails() {

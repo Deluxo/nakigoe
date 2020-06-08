@@ -69,6 +69,19 @@ export default class Input extends Vue {
 
   private isValid = true;
 
+  // Do I need this?
+  // private convertToProperType(value: string) {
+  //   switch (this.type) {
+  //     case "text":
+  //     case "textarea":
+  //       return value;
+  //     case "number":
+  //       return Number(value);
+  //     case "date":
+  //       return new Date(value);
+  //   }
+  // }
+
   private validate(value: string) {
     // const isMinLengthValid = this.checkMinLength(value); // TODO: Add in future if needed
     const isCustomValid = this.CustomValidator(value);
