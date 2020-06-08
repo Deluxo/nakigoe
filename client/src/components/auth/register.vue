@@ -52,20 +52,13 @@
         limit="140"/>
     </section>
    
-  <section>
-      <DirectionButtonPair 
-        @click="switchForm"
-        @finish="register"
-        :hide-backwards="page == 0"
-        :hide-forwards="page == pageCount - 1"/>
-  </section>
-
-    <button 
-      class="button button-blue"
-      @click="printModel"
-      type="button">
-      Check model
-    </button>
+    <section>
+        <DirectionButtonPair 
+          @click="switchForm"
+          @finish="register"
+          :hide-backwards="page == 0"
+          :hide-forwards="page == pageCount - 1"/>
+    </section>
   </form>
 </template>
 
