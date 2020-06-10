@@ -3,7 +3,7 @@
     class="modal"
     v-if="isShown">
 
-    <section class="overlay">
+    <section class="overlay" @click="toggleShown">
       <!-- This tag has intentionally been left blank -->
     </section>
 
