@@ -55,7 +55,6 @@ export default class Modal extends Vue {
   private isShown = true;
 
   toggleShown() {
-    console.log("Showing content");
     this.isShown = !this.isShown;
   }
 }
