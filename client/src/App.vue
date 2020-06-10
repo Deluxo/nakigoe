@@ -6,7 +6,7 @@
         @click="showRegister">Register</button>
       
       <Modal ref="register-modal">
-        <Register />
+        <Register class="register-form"/>
       </Modal>
     </section>
 

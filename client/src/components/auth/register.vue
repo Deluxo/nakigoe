@@ -87,6 +87,7 @@ export default class Register extends Vue {
 
   private page = 0;
   private pageCount = 3;
+
   created() {
     this.model = createEmptyModel();
   }
@@ -141,13 +142,6 @@ export default class Register extends Vue {
 
   register() {
     console.log("regster");
-  }
-
-  printModel() {
-    if (!this.model)
-      return;
-
-    console.log(JSON.stringify(this.model));
   }
 }
 </script>
