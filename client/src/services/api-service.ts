@@ -25,11 +25,11 @@ export class ApiService {
     return fetch(`${this.baseendpoint}${request.endpoint}`, {
       method: request.method.toString(), 
       headers: this.headers,
-      body: JSON.stringify(request.body),
+      body: JSON.stringify(request.body), // TODO: Remove from GET
     });
   }
 
-  Get(endpoint: string, body: any) {
+  Get(endpoint: string) {
     const request: RequestData = {
       endpoint,
       method: HttpMethods.Get,

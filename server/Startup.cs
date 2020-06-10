@@ -55,16 +55,25 @@ namespace Server
       services.AddScoped<IUSerService, UserService>();
 
       services.AddControllers();
+
+      services.AddCors(options =>
+        options.AddPolicy("Disable", builder => {
+          builder
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin();
+        }));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
-      {
+      {  
         app.UseDeveloperExceptionPage();
       }
 
+      app.UseCors("Disable");
       // app.UseHttpsRedirection();
 
       app.UseRouting();
