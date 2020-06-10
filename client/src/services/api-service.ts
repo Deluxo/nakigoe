@@ -6,7 +6,7 @@ import { API_URL } from "@/config/config";
 export type RequestData = {
   endpoint: string; 
   method: HttpMethods; 
-  body: any;
+  body?: any;
 }
 
 export class ApiService {
@@ -31,8 +31,7 @@ export class ApiService {
 
   Get(endpoint: string, body: any) {
     const request: RequestData = {
-      endpoint, 
-      body,
+      endpoint,
       method: HttpMethods.Get,
     };
 
@@ -43,7 +42,7 @@ export class ApiService {
     const request: RequestData = {
       endpoint, 
       body,
-      method: HttpMethods.Get,
+      method: HttpMethods.Post,
     };
     
     return this.fetch(request);
@@ -53,7 +52,7 @@ export class ApiService {
     const request: RequestData = {
       endpoint, 
       body,
-      method: HttpMethods.Get,
+      method: HttpMethods.Put,
     };
     
     return this.fetch(request);
@@ -63,7 +62,7 @@ export class ApiService {
     const request: RequestData = {
       endpoint, 
       body,
-      method: HttpMethods.Get,
+      method: HttpMethods.Delete,
     };
     
     return this.fetch(request);
@@ -73,7 +72,7 @@ export class ApiService {
     const request: RequestData = {
       endpoint, 
       body,
-      method: HttpMethods.Get,
+      method: HttpMethods.Patch,
     };
     
     return this.fetch(request);
