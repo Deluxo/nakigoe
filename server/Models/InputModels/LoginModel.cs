@@ -1,6 +1,6 @@
 namespace Server.Models.InputModels
 {
-  public class AuthModel
+  public class LoginModel
   {
     public string username { get; set; }
     public string password { get; set; }
