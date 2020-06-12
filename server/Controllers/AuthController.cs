@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using Server.Services;
 using Server.Models.InputModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Server.Data;
 
 namespace Server.Controllers
 {
@@ -17,15 +19,22 @@ namespace Server.Controllers
   {
 
     readonly IUSerService _userService;
-    public AuthController(IUSerService userService)
+    readonly UserContext _userContext;
+    public AuthController(IUSerService userService, UserContext userContext)
     {
       _userService = userService;
+      _userContext = userContext;
     }
 
+    [Authorize]
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult get()
     {
-      return Ok("Hello World");
+      // Gets the user id and then finds the user
+      var test = User.Identity.Name;
+      var user = 
+        _userContext.Users.FirstOrDefault(user => user.Id.Equals(test));
+      return Ok(test);
     }
 
     [AllowAnonymous]
