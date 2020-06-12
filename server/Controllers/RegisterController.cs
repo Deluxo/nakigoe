@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Server.Services;
 using Server.Models.InputModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Server.Controllers
 {
