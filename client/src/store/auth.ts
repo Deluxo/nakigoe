@@ -2,9 +2,8 @@ import {
   Module, VuexModule, Mutation, Action, 
 } from "vuex-module-decorators";
 import { apiService } from "@/services/api-service";
+import { RegisterModel, AuthModel, User } from "@/models";
 
-type User = Record<string, string>;
-type RegisterModel = string;
 
 @Module
 export default class Auth extends VuexModule {
@@ -25,16 +24,26 @@ export default class Auth extends VuexModule {
   }
 
   @Mutation
-  Authenticate(token: string, user: User) {
+  Authenticate(auth: AuthModel) {
     this.IsAuthenticated = true;
-    this.Token = token;
-    this.User = user;
+    this.Token = auth.Token;
+    this.User = auth as User;
+    console.log(auth);
   }
 
-  @Action
+  @Action({ rawError: true })
   async Register(user: RegisterModel) {
     const auth = await apiService.Post("/register", user);
-    const data = await auth.json();
-    console.log(data);
+    
+    if (auth.status !== 200) {
+      console.log(await auth.text());
+      return auth.body;
+    }
+    
+    const data = await auth.json() as AuthModel;
+
+    this.context.commit("Authenticate", data);
+
+    return "Signed in";
   }
 }

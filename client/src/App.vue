@@ -27,12 +27,16 @@ import Navigation from "@/components/navigation.vue";
 import Register from "@/components/auth/register.vue";
 import Modal from "@/components/ui/modal.vue";
 import { Ref } from "vue-property-decorator";
+import { mapGetters } from "vuex";
 
 @Component({
   components: {
     Navigation,
     Register,
     Modal,
+  },
+  computed: {
+    ...mapGetters(["isAuthenticated"]),
   },
 })
 export default class Main extends Vue {

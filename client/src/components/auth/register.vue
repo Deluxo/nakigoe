@@ -55,7 +55,7 @@
     <section>
         <DirectionButtonPair 
           @click="switchForm"
-          @finish="register"
+          @finish="finish"
           :hide-backwards="page == 0"
           :hide-forwards="page == pageCount - 1"/>
     </section>
@@ -67,6 +67,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { RegisterModel, createEmptyModel } from "@/models";
 import InputComponent from "@/components/ui/input.vue";
 import DirectionButtonPair from "@/components/auth/direction-button-pair.vue";
+import { mapActions } from "vuex";
 
 // enum Page {
 //   UserDetails,
@@ -79,8 +80,13 @@ import DirectionButtonPair from "@/components/auth/direction-button-pair.vue";
     InputComponent,
     DirectionButtonPair,
   },
+  methods: {
+    ...mapActions(["Register"]),
+  },
 })
 export default class Register extends Vue {
+  Register!: (user: RegisterModel) => void;
+
   private isUsernameValid = true;
 
   private model: RegisterModel | null = null;
@@ -140,8 +146,11 @@ export default class Register extends Vue {
     return false;
   }
 
-  register() {
-    console.log("regster");
+  finish() {
+    if (!this.model)
+      return;
+
+    this.Register(this.model);
   }
 }
 </script>
