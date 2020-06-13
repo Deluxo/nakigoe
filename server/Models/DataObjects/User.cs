@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Server.Models.InputModels;
 using Server.Models.Interfaces;
+using Server.Models.OutputModels;
 
 namespace Models.DataObjects
 {
@@ -17,5 +18,14 @@ namespace Models.DataObjects
     public DateTime BirthDate { get; set; }
 
     public List<FollowedUser> Following { get; set; }
+
+    public static explicit operator AuthModel(User model) =>
+      new AuthModel
+      {
+        UserName = model.UserName,
+        BirthDate = model.BirthDate,
+        DisplayName = model.DisplayName,
+        Bio = model.Bio
+      };
   }
 }

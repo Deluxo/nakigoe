@@ -32,18 +32,21 @@ namespace Server.Controllers
     {
       // Gets the user id and then finds the user
       var test = User.Identity.Name;
-      var user = 
+      var user =
         _userContext.Users.FirstOrDefault(user => user.Id.Equals(test));
       return Ok(test);
     }
 
     [AllowAnonymous]
     [HttpPost]
-    public IActionResult Post([FromBody] AuthModel authModel)
+    public IActionResult Post([FromBody] LoginModel authModel)
     {
-      var token = _userService.Authenticate(authModel.username, authModel.password);
+      var auth = _userService.Authenticate(authModel.UserName, authModel.Password);
 
-      return Ok(token ?? "Username or password not valid");
+      if (auth == null)
+        return Unauthorized("Username or password invalid");
+
+      return Ok(auth);
     }
   }
 }

@@ -8,14 +8,14 @@ using System;
 using System.Text;
 using Models.DataObjects;
 using Server.Models.InputModels;
-
+using Server.Models.OutputModels;
 
 namespace Server.Services
 {
   public interface IUSerService
   {
-    string Authenticate(string username, string password);
-    string Register(RegisterModel registerModel);
+    AuthModel Authenticate(string username, string password);
+    AuthModel Register(RegisterModel registerModel);
     bool IfUserExists(string userName);
   }
 
@@ -28,9 +28,9 @@ namespace Server.Services
       _context = context;
     }
 
-    public string Authenticate(string username, string password)
+    public AuthModel Authenticate(string username, string password)
     {
-      var user = _context.Users.FirstOrDefault(user => user.UserName == username);
+      var user = _context.Users.FirstOrDefault(u => u.UserName == username);
 
       if (user == null)
         return null;
@@ -40,10 +40,15 @@ namespace Server.Services
       if (!comparePasswords)
         return null;
 
-      return CreateToken(user.Id);
+      var token = CreateToken(user.Id);
+
+      var auth = (AuthModel)user;
+      auth.Token = token;
+
+      return auth;
     }
 
-    public string Register(RegisterModel registerModel)
+    public AuthModel Register(RegisterModel registerModel)
     {
       // TODO: Consider adding a user creating class
       var user = new User
@@ -60,7 +65,12 @@ namespace Server.Services
       _context.Users.Add(user);
       _context.SaveChangesAsync();
 
-      return CreateToken(user.Id);
+      var token = CreateToken(user.Id);
+
+      var auth = (AuthModel)user;
+      auth.Token = token;
+
+      return auth;
     }
 
     public bool IfUserExists(string userName) =>
