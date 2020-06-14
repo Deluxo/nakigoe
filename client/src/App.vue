@@ -1,6 +1,8 @@
 <template>
   <section id="app" class="flex container mx-auto">
     <section v-if="!loggedIn">
+      <Login />
+
       <button 
         class="button"
         @click="showRegister">Register</button>
@@ -25,6 +27,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import Navigation from "@/components/navigation.vue";
 import Register from "@/components/auth/register.vue";
+import Login from "@/components/auth/login.vue";
 import Modal from "@/components/ui/modal.vue";
 import { Ref } from "vue-property-decorator";
 import { mapGetters } from "vuex";
@@ -34,6 +37,7 @@ import { mapGetters } from "vuex";
     Navigation,
     Register,
     Modal,
+    Login,
   },
   computed: {
     ...mapGetters(["isAuthenticated"]),
