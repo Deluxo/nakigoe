@@ -1,15 +1,15 @@
 <template>
-  <section id="app" class="flex container mx-auto">
-    <NotAuthenticated v-if="!loggedIn" />
+    <section>
+      <Login />
 
-    <main v-else class="flex w-full">
-      <Navigation class="w-1/5 bg-gray-300" />
-
-      <section class="w-4/5 bg-gray-100">
-        <router-view />
-      </section>
-    </main>
-  </section>
+      <button 
+        class="button"
+        @click="showRegister">Register</button>
+      
+      <Modal ref="register-modal">
+        <Register class="register-form"/>
+      </Modal>
+    </section>
 </template>
 
 <script lang="ts">
@@ -20,20 +20,16 @@ import Register from "@/components/auth/register.vue";
 import Login from "@/components/auth/login.vue";
 import Modal from "@/components/ui/modal.vue";
 import { Ref } from "vue-property-decorator";
-import { mapGetters } from "vuex";
-import NotAuthenticated from "@/components/not-authenticated.vue";
 
 @Component({
   components: {
-    NotAuthenticated,
-  },
-  computed: {
-    ...mapGetters(["isAuthenticated"]),
+    Navigation,
+    Register,
+    Modal,
+    Login,
   },
 })
-export default class Main extends Vue {
-  loggedIn = false;
-
+export default class NotAuthenticated extends Vue {
   @Ref("register-modal")
   private registerModal!: Modal;
 
