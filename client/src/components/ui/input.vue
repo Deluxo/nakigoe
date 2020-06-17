@@ -3,17 +3,8 @@
     <div class="input-component login-details">
       <label :for="`input-${label}`">{{ label }}</label>
      
-      <Textarea 
-        v-if="type === `textarea`"
-        :name="`input-${label}`"
-        :id="`input-${label}`" 
-        :placeholder="placeholder"
-        @input="onInput($event.target.value)"
-        :maxlength="limit"
-        :class="{error: !isValid}"
-        @blur="validate($event.target.value)"/>
-      <input 
-        v-else
+      <component 
+        :is="getType(type)"
         :type="type" 
         :name="`input-${label}`"
         :id="`input-${label}`" 
@@ -64,6 +55,9 @@ export default class Input extends Vue {
     default: () => () => true,
   })
   CustomValidator!: (value: string) => boolean;
+
+  private getType = 
+    (type: string) => (type === `textarea` ? `textarea` : `input`)
 
   private length = 0;
 
