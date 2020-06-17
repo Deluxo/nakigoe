@@ -15,11 +15,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import Navigation from "@/components/navigation.vue";
-import Register from "@/components/auth/register.vue";
-import Login from "@/components/auth/login.vue";
-import Modal from "@/components/ui/modal.vue";
-import { Ref } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 import NotAuthenticated from "@/components/not-authenticated.vue";
 
@@ -33,13 +28,6 @@ import NotAuthenticated from "@/components/not-authenticated.vue";
 })
 export default class Main extends Vue {
   loggedIn = false;
-
-  @Ref("register-modal")
-  private registerModal!: Modal;
-
-  showRegister() {
-    this.registerModal.toggleShown();
-  }
 }
 </script>
 
