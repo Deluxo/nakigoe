@@ -3,7 +3,6 @@
     <InputComponent 
       label="Username"
        v-model="model.UserName"
-       limit="50"
        placeholder="Username"
       />
     <InputComponent
