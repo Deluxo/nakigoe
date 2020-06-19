@@ -41,6 +41,7 @@ export default class Auth extends VuexModule {
     }
 
     const data = await auth.json() as AuthModel;
+    console.log(data);
     this.context.commit("Authenticate", data);
     
     return "Signed in";
