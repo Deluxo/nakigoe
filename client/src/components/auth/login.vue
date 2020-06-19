@@ -1,5 +1,5 @@
 <template>
-  <form class="w-3/12">
+  <form>
     <InputComponent 
       class="input"
       label="Username"
@@ -15,7 +15,7 @@
 
     <button 
       type="button"
-      class="button button-blue"
+      class="button button-blue w-full"
       @click="loginButtonClick">Log in</button>
   </form>
 </template>
