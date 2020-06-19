@@ -57,7 +57,8 @@ namespace Server
       services.AddControllers();
 
       services.AddCors(options =>
-        options.AddPolicy("Disable", builder => {
+        options.AddPolicy("Disable", builder =>
+        {
           builder
             .AllowAnyHeader()
             .AllowAnyMethod()
@@ -69,7 +70,7 @@ namespace Server
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
-      {  
+      {
         app.UseDeveloperExceptionPage();
       }
 

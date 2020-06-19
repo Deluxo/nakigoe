@@ -14,13 +14,13 @@ namespace Server.Controllers
 {
   [Authorize]
   [ApiController]
-  [Route("[controller]")]
-  public class AuthController : ControllerBase
+  [Route("/i/[controller]")]
+  public class LoginController : ControllerBase
   {
 
     readonly IUSerService _userService;
     readonly UserContext _userContext;
-    public AuthController(IUSerService userService, UserContext userContext)
+    public LoginController(IUSerService userService, UserContext userContext)
     {
       _userService = userService;
       _userContext = userContext;
