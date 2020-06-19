@@ -36,7 +36,7 @@ import { mapActions } from "vuex";
   components: {
     InputComponent,
   },
-  computed: {
+  methods: {
     ...mapActions(["Login"]),
   },
 })
