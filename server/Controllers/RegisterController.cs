@@ -12,7 +12,7 @@ using System.Security.Claims;
 namespace Server.Controllers
 {
   [ApiController]
-  [Route("/i/[controller]")]
+  [Route("[controller]")]
   public class RegisterController : ControllerBase
   {
     readonly IUSerService _userService;

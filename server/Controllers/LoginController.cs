@@ -14,7 +14,7 @@ namespace Server.Controllers
 {
   [Authorize]
   [ApiController]
-  [Route("/i/[controller]")]
+  [Route("[controller]")]
   public class LoginController : ControllerBase
   {
 
