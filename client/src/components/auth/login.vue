@@ -27,7 +27,7 @@
 </style>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import InputComponent from "@/components/ui/input.vue";
 import { LoginModel, CreateEmptyLoginModel } from "@/models/auth/login-model";
 import { mapActions } from "vuex";
