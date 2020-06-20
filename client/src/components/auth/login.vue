@@ -1,11 +1,8 @@
 <template>
   <form>
-    <!-- COMPONIZZLE THIS SHIZZLE -->
-    <section 
-      class="error bg-red-500 text-white w-full p-4 font-bold rounded"
-      v-if="error">
-      {{ error }}
-    </section>
+    <Error 
+      v-if="error"
+      :message="error"/>
 
     <InputComponent 
       class="input"
@@ -38,9 +35,11 @@ import { Component, Vue } from "vue-property-decorator";
 import InputComponent from "@/components/ui/input.vue";
 import { LoginModel, CreateEmptyLoginModel } from "@/models/auth/login-model";
 import { mapActions } from "vuex";
+import Error from "@/components/ui/error.vue";
 
 @Component({
   components: {
+    Error,
     InputComponent,
   },
   methods: {
