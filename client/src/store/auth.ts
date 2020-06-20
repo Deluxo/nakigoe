@@ -37,28 +37,27 @@ export default class Auth extends VuexModule {
     const auth = await apiService.Post("/login", user);
 
     if (auth.status !== 200) {
-      return auth.body;
+      return auth.text();
     }
 
     const data = await auth.json() as AuthModel;
     console.log(data);
     this.context.commit("Authenticate", data);
     
-    return "Signed in";
+    return null;
   }
   @Action({ rawError: true })
   async Register(user: RegisterModel) {
     const auth = await apiService.Post("/register", user);
     
     if (auth.status !== 200) {
-      console.log(await auth.text());
-      return auth.body;
+      return auth.text();
     }
     
     const data = await auth.json() as AuthModel;
 
     this.context.commit("Authenticate", data);
 
-    return "Signed in";
+    return null;
   }
 }

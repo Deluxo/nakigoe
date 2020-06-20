@@ -1,5 +1,12 @@
 <template>
   <form>
+    <!-- COMPONIZZLE THIS SHIZZLE -->
+    <section 
+      class="error bg-red-500 text-white w-full p-4 font-bold rounded"
+      v-if="error">
+      {{ error }}
+    </section>
+
     <InputComponent 
       class="input"
       label="Username"
@@ -42,14 +49,16 @@ import { mapActions } from "vuex";
 })
 export default class Login extends Vue {
   private model!: LoginModel;
-  Login!: (user: LoginModel) => Promise<void>;
+  private error: string | null = null;
+
+  Login!: (user: LoginModel) => Promise<string | null>;
 
   created() {
     this.model = CreateEmptyLoginModel();
   }
 
-  loginButtonClick() {
-    this.Login(this.model);
+  async loginButtonClick() {
+    this.error = await this.Login(this.model);
   }
 }
 </script>
