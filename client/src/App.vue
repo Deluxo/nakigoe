@@ -18,10 +18,11 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { mapGetters } from "vuex";
 import NotAuthenticated from "@/components/not-authenticated.vue";
-
+import Navigation from "@/components/navigation.vue";
 @Component({
   components: {
     NotAuthenticated,
+    Navigation,
   },
   computed: {
     ...mapGetters(["isAuthenticated"]),
