@@ -56,7 +56,7 @@ namespace Server
 
       services
         .AddControllers()
-        .AddJsonOptions(options =>
+        .AddJsonOptions(options => // Output data as is rather than converting it to camel case
           options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
       services.AddCors(options =>
