@@ -10,6 +10,7 @@
        v-model="model.UserName"
        placeholder="Username"
       />
+      
     <InputComponent 
       class="input"
       type="password"

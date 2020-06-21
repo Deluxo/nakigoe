@@ -1,15 +1,13 @@
 <template>
-    <section class="w-full">
-      <Login />
+  <section class="w-full">
+    <Login />
 
-      <button 
-        class="button"
-        @click="showRegister">Register</button>
-      
-      <Modal ref="register-modal">
-        <Register class="register-form"/>
-      </Modal>
-    </section>
+    <button class="register button button-transparent w-full" @click="showRegister">Register</button>
+
+    <Modal ref="register-modal">
+      <Register class="register-form" />
+    </Modal>
+  </section>
 </template>
 
 <script lang="ts">
@@ -41,4 +39,8 @@ export default class NotAuthenticated extends Vue {
 
 <style lang="scss">
 @import "@/styles/styles.scss";
+
+.register {
+  margin-top: 10px;
+}
 </style>
