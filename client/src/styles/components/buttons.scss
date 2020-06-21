@@ -14,6 +14,12 @@
   }
 }
 
+.button-transparent {
+  @apply border-2;
+  @apply border-blue-500;
+  @apply text-blue-500;
+}
+
 .button-small {
   @apply text-xs;
   @apply py-1;
