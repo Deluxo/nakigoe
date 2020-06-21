@@ -1,6 +1,6 @@
 <template>
   <!-- TODO: People who aren't authenticated needs to be able to see pips -->
-  <section id="app" class="flex container mx-auto">
+  <!-- <section id="app" class="flex container mx-auto">
     <NotAuthenticated v-if="!isAuthenticated" />
 
     <main v-else class="flex w-full">
@@ -10,7 +10,8 @@
         <router-view />
       </section>
     </main>
-  </section>
+  </section> -->
+    <ImageInput />
 </template>
 
 <script lang="ts">
@@ -19,10 +20,13 @@ import Component from "vue-class-component";
 import { mapGetters } from "vuex";
 import NotAuthenticated from "@/components/not-authenticated.vue";
 import Navigation from "@/components/navigation.vue";
+import ImageInput from "@/components/ui/image-input.vue";
+
 @Component({
   components: {
     NotAuthenticated,
     Navigation,
+    ImageInput,
   },
   computed: {
     ...mapGetters(["isAuthenticated"]),
