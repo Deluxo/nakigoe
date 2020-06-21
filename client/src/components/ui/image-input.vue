@@ -1,8 +1,11 @@
 <template>
   <section class="ii-box" @click="upload">
-    <img ref="image">
+    <img 
+      ref="image" 
+      v-if="image"
+      :src="image">
 
-    <input type="file" class="ii-hidden" ref="ii-input" @change="fileChange">
+    <input type="file" class="ii-hidden" ref="ii-input" @change="imageChange">
   </section>
 </template>
 
@@ -28,17 +31,37 @@ export default class ImageInput extends Vue {
   @Ref("ii-input")
   private input!: HTMLInputElement;
 
-  @Ref("image")
-  private image!: HTMLImageElement;
+  private image: string | null = null;
 
-  fileChange() {
+  async imageChange() {
     const { files } = this.input;
 
     if (!files) return;
 
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(files[0]);
-    fileReader.onload = () => { this.image.src = fileReader.result as string; };
+    const file = files[0];
+    await this.displayImage(file);
+    
+    this.$emit("image-change", file); 
+  }
+
+  displayImage(file: File) {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      // Add it to the image
+      fileReader.onload = () => {
+        const image = fileReader.result as string; 
+        this.image = image; 
+        resolve(true);
+      };
+
+      // Just in case
+      fileReader.onerror = 
+        error => {
+          reject(error);
+        };
+    });
   }
 
   upload() {
