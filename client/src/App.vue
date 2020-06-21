@@ -1,6 +1,6 @@
 <template>
   <section id="app" class="flex container mx-auto">
-    <NotAuthenticated v-if="!loggedIn" />
+    <NotAuthenticated v-if="!isAuthenticated" />
 
     <main v-else class="flex w-full">
       <Navigation class="w-1/5 bg-gray-300" />
@@ -27,7 +27,7 @@ import NotAuthenticated from "@/components/not-authenticated.vue";
   },
 })
 export default class Main extends Vue {
-  loggedIn = false;
+  isAuthenticated!: boolean;
 }
 </script>
 
