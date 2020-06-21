@@ -1,6 +1,6 @@
 import { User } from "@/models/user";
 
-export class LocalStorageService {
+export class StorageService {
   static get Token(): string | null {
     return localStorage.getItem("Token");
   }

@@ -4,13 +4,13 @@ import {
 import { apiService } from "@/services/api-service";
 import { RegisterModel, AuthModel, User } from "@/models";
 import { LoginModel } from "@/models/auth/login-model";
-import { LocalStorageService } from "@/services/local-storage-service";
+import { StorageService } from "@/services/storage-service";
 
 @Module
 export default class Auth extends VuexModule {
-  private Token = LocalStorageService.Token;
-  private User = LocalStorageService.User;
-  private IsAuthenticated = LocalStorageService.IsAuthenticated;
+  private Token = StorageService.Token;
+  private User = StorageService.User;
+  private IsAuthenticated = StorageService.IsAuthenticated;
 
   get token(): string | null {
     return this.Token;
@@ -30,7 +30,7 @@ export default class Auth extends VuexModule {
     this.Token = auth.Token;
     this.User = auth as User;
     
-    LocalStorageService.Store(this.User, this.Token);
+    StorageService.Store(this.User, this.Token);
   }
 
   @Action({ rawError: true })

@@ -54,7 +54,10 @@ namespace Server
 
       services.AddScoped<IUSerService, UserService>();
 
-      services.AddControllers();
+      services
+        .AddControllers()
+        .AddJsonOptions(options =>
+          options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
       services.AddCors(options =>
         options.AddPolicy("Disable", builder =>
