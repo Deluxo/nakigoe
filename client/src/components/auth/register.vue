@@ -1,63 +1,58 @@
 <template>
   <form>
     <h2 class="text-xl font-bold">Create your account</h2>
-    
-    <section 
-      class="user-details"
-      v-show="page == 0">
+
+    <section class="user-details" v-show="page == 0">
       <h3 class="font-bold">First we need some login details</h3>
 
-      <InputComponent 
+      <InputComponent
         label="Username"
         placeholder="Your login name"
         v-model="model.UserName"
         limit="50"
         :custom-validator="validateUserName"
-        @onValidate="v => isUsernameValid = v"/>
+        @onValidate="v => isUsernameValid = v"
+      />
 
-      <InputComponent 
+      <InputComponent
         label="Password"
         placeholder="Password"
         v-model="model.Password"
-        type="password"/>
+        type="password"
+      />
     </section>
 
-    <section 
-      class="personal-details"
-      v-show="page == 1">
+    <section class="personal-details" v-show="page == 1">
       <h3 class="font-bold">Now for some information about you</h3>
 
-      <InputComponent 
-        label="Name"
-        placeholder="Display name"
-        v-model="model.Display"
-        limit="25"/>
+      <InputComponent label="Name" placeholder="Display name" v-model="model.Display" limit="25" />
 
-      <InputComponent 
+      <InputComponent
         label="Birthdate"
         placeholder="Birthdate"
         v-model="model.BirthDate"
-        type="date"/>
+        type="date"
+      />
     </section>
 
-    <section 
-      class="bio"
-      v-show="page == 2">
-      <h3>And finally a short description of yourself</h3>
-      <InputComponent 
+    <section class="bio" v-show="page == 2">
+      <h3>And finally a good profile picture and a description of yourself</h3>
+      <InputComponent
         label="Bio"
         placeholder="Say something nice about yourself"
         type="textarea"
         v-model="model.Bio"
-        limit="140"/>
+        limit="140"
+      />
     </section>
-   
+
     <section>
-        <DirectionButtonPair 
-          @click="switchForm"
-          @finish="finish"
-          :hide-backwards="page == 0"
-          :hide-forwards="page == pageCount - 1"/>
+      <DirectionButtonPair
+        @click="switchForm"
+        @finish="finish"
+        :hide-backwards="page == 0"
+        :hide-forwards="page == pageCount - 1"
+      />
     </section>
   </form>
 </template>
@@ -68,6 +63,7 @@ import { RegisterModel, createEmptyModel } from "@/models";
 import InputComponent from "@/components/ui/input.vue";
 import DirectionButtonPair from "@/components/auth/direction-button-pair.vue";
 import { mapActions } from "vuex";
+import PictureInput from "vue-picture-input";
 
 // enum Page {
 //   UserDetails,
@@ -79,6 +75,7 @@ import { mapActions } from "vuex";
   components: {
     InputComponent,
     DirectionButtonPair,
+    PictureInput,
   },
   methods: {
     ...mapActions(["Register"]),
@@ -102,12 +99,12 @@ export default class Register extends Vue {
     // const lastPage = this.page === this.pageCount - 1;
     // if (lastPage) // This is probably not needed
     //   return;
-      
+
     const isModelValid = this.validateModel();
     if (!isModelValid)
       return;
 
-    this.page = 
+    this.page =
       (this.page + direction + this.pageCount) % this.pageCount; // Mod with pagecount to prevent over and underflow
   }
 
@@ -128,7 +125,7 @@ export default class Register extends Vue {
   validateUserName(userName: string) {
     // if (userName[0] === "i")
     //   return true;
-    
+
     // return false;
     return true;
   }
