@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: People who aren't authenticated needs to be able to see pips -->
   <section id="app" class="flex container mx-auto">
     <NotAuthenticated v-if="!isAuthenticated" />
 
