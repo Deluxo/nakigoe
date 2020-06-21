@@ -37,6 +37,9 @@
 
     <section class="bio" v-show="page == 2">
       <h3>And finally a good profile picture and a description of yourself</h3>
+
+      <input type="file" name="file" id="file" />
+
       <InputComponent
         label="Bio"
         placeholder="Say something nice about yourself"
@@ -63,7 +66,6 @@ import { RegisterModel, createEmptyModel } from "@/models";
 import InputComponent from "@/components/ui/input.vue";
 import DirectionButtonPair from "@/components/auth/direction-button-pair.vue";
 import { mapActions } from "vuex";
-import PictureInput from "vue-picture-input";
 
 // enum Page {
 //   UserDetails,
@@ -75,7 +77,6 @@ import PictureInput from "vue-picture-input";
   components: {
     InputComponent,
     DirectionButtonPair,
-    PictureInput,
   },
   methods: {
     ...mapActions(["Register"]),
@@ -90,6 +91,10 @@ export default class Register extends Vue {
 
   private page = 0;
   private pageCount = 3;
+
+  pictureUploaded(image: HTMLImageElement) {
+    console.log(image);
+  }
 
   created() {
     this.model = createEmptyModel();
