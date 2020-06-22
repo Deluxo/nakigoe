@@ -5,12 +5,19 @@
     @drop="imageDropped"
     @dragover="imageDragged">
 
-    <section class="ii-preview">
+    <section 
+      class="ii-preview"
+      v-if="image">
       <img 
         class="ii-image"
         ref="image" 
-        v-if="image"
         :src="image">
+    </section>
+
+    <section 
+      v-else
+      class="ii-message">
+      <span>{{ message }}</span>
     </section>
 
     <input 
@@ -28,6 +35,9 @@
 
   @apply border-8;
   @apply border-dashed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ii-hidden {
@@ -38,19 +48,30 @@
   height: 100%;
 
   .ii-image {
-    margin: 0px auto;
     width: auto;
     height: 100%;
   }
 }
 
+.ii-message {
+  @apply text-center;
+  @apply h-24;
+}
 </style>
 
 <script lang="ts">
-import { Component, Vue, Ref } from "vue-property-decorator";
+import {
+ Component, Vue, Ref, Prop, 
+} from "vue-property-decorator";
 
 @Component
 export default class ImageInput extends Vue {
+  @Prop({
+    required: true, 
+    type: String,
+  })
+  message!: string;
+
   @Ref("ii-input")
   private input!: HTMLInputElement;
 

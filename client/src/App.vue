@@ -11,7 +11,8 @@
       </section>
     </main>
   </section> -->
-    <ImageInput />
+    <ImageInput 
+      message="Picture"/>
 </template>
 
 <script lang="ts">
