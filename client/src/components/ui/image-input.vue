@@ -1,11 +1,19 @@
 <template>
-  <section class="ii-box" @click="upload">
+  <section 
+    class="ii-box" 
+    @click="upload"
+    @drop="imageDropped"
+    @dragover="imageDragged">
     <img 
       ref="image" 
       v-if="image"
       :src="image">
 
-    <input type="file" class="ii-hidden" ref="ii-input" @change="imageChange">
+    <input 
+      type="file" 
+      class="ii-hidden" 
+      ref="ii-input" 
+      @change="imageChange">
   </section>
 </template>
 
@@ -33,15 +41,31 @@ export default class ImageInput extends Vue {
 
   private image: string | null = null;
 
+  // Prevents the browser default
+  private imageDragged(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  private imageDropped(event: DragEvent) {
+    event.preventDefault();
+    const data = event.dataTransfer as DataTransfer;
+    const file = data.files[0];
+    this.handleFile(file);
+  }
+
+  async handleFile(file: File) {
+    await this.displayImage(file);
+    
+    this.$emit("image-change", file); 
+  }
+
   async imageChange() {
     const { files } = this.input;
 
     if (!files) return;
 
     const file = files[0];
-    await this.displayImage(file);
-    
-    this.$emit("image-change", file); 
+    this.handleFile(file);
   }
 
   displayImage(file: File) {
