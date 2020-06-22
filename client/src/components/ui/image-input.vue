@@ -4,10 +4,14 @@
     @click="upload"
     @drop="imageDropped"
     @dragover="imageDragged">
-    <img 
-      ref="image" 
-      v-if="image"
-      :src="image">
+
+    <section class="ii-preview">
+      <img 
+        class="ii-image"
+        ref="image" 
+        v-if="image"
+        :src="image">
+    </section>
 
     <input 
       type="file" 
@@ -19,7 +23,7 @@
 
 <style lang="scss" scoped>
 .ii-box {
-  width: 800px;
+  width: 400px;
   height: 400px;
 
   @apply border-8;
@@ -29,6 +33,17 @@
 .ii-hidden {
   display: none;
 }
+
+.ii-preview {
+  height: 100%;
+
+  .ii-image {
+    margin: 0px auto;
+    width: auto;
+    height: 100%;
+  }
+}
+
 </style>
 
 <script lang="ts">
