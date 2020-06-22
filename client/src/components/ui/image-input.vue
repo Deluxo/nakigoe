@@ -50,6 +50,7 @@ export default class ImageInput extends Vue {
     event.preventDefault();
     const data = event.dataTransfer as DataTransfer;
     const file = data.files[0];
+    console.log(file);
     this.handleFile(file);
   }
 
