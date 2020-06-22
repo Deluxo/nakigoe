@@ -53,13 +53,13 @@ export default class ImageInput extends Vue {
     this.handleFile(file);
   }
 
-  async handleFile(file: File) {
+  private async handleFile(file: File) {
     await this.displayImage(file);
     
     this.$emit("image-change", file); 
   }
 
-  async imageChange() {
+  private async imageChange() {
     const { files } = this.input;
 
     if (!files) return;
@@ -68,7 +68,7 @@ export default class ImageInput extends Vue {
     this.handleFile(file);
   }
 
-  displayImage(file: File) {
+  private displayImage(file: File) {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
@@ -88,7 +88,7 @@ export default class ImageInput extends Vue {
     });
   }
 
-  upload() {
+  private upload() {
     console.log("Upload");
     this.input.click();
   }
