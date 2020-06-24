@@ -30,9 +30,6 @@
 
 <style lang="scss" scoped>
 .ii-box {
-  width: 400px;
-  height: 400px;
-
   @apply border-8;
   @apply border-dashed;
   display: flex;
