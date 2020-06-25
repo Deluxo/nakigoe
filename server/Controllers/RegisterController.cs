@@ -22,11 +22,13 @@ namespace Server.Controllers
     }
 
     [HttpPost]
-    public IActionResult post([FromBody] RegisterModel registerModel)
+    public IActionResult Post([FromForm] RegisterModel registerModel)
     {
       var userExists = _userService.IfUserExists(registerModel.UserName);
       if (userExists)
         return Unauthorized("Username has already been taken");
+
+      Console.WriteLine(registerModel.ProfilePicture.Headers);
 
       var token = _userService.Register(registerModel);
 
