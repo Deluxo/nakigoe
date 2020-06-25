@@ -63,6 +63,13 @@
   </form>
 </template>
 
+<style lang="scss" scoped>
+.picture {
+  width: 100px;
+  height: 100px;
+}
+</style>
+
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { RegisterModel, createEmptyModel } from "@/models";
