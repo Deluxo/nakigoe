@@ -22,10 +22,13 @@ export class ApiService {
   }
 
   private fetch(request: RequestData): Promise<Response> {
+    const body = 
+      request.body ? JSON.stringify(request.body) : null;
+
     return fetch(`${this.baseendpoint}${request.endpoint}`, {
       method: request.method.toString(), 
       headers: this.headers,
-      body: JSON.stringify(request.body), // TODO: Remove from GET
+      body, 
     });
   }
 
