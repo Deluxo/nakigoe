@@ -25,7 +25,7 @@
     <section class="personal-details" v-show="page == 1">
       <h3 class="font-bold">Now for some information about you</h3>
 
-      <InputComponent label="Name" placeholder="Display name" v-model="model.Display" limit="25" />
+      <InputComponent label="Name" placeholder="Display name" v-model="model.DisplayName" limit="25" />
 
       <InputComponent
         label="Birthdate"
