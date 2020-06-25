@@ -41,7 +41,8 @@
 
       <ImageInput 
         message="Picture"
-        class="picture"/>
+        class="picture"
+        @image-change="imageInput"/>
 
       <InputComponent
         label="Bio"
@@ -99,7 +100,7 @@ export default class Register extends Vue {
 
   private isUsernameValid = true;
 
-  private model: RegisterModel | null = null;
+  private model!: RegisterModel;
 
   private page = 0;
   private pageCount = 3;
@@ -123,6 +124,10 @@ export default class Register extends Vue {
 
     this.page =
       (this.page + direction + this.pageCount) % this.pageCount; // Mod with pagecount to prevent over and underflow
+  }
+
+  imageInput(image: File) {
+    this.model.ProfilePicture = image;
   }
 
   validateModel(): boolean {

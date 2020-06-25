@@ -4,6 +4,7 @@ export type RegisterModel = {
   BirthDate: Date;
   DisplayName: string;
   Bio: string;
+  ProfilePicture: File | null;
 }
 
 export const createEmptyModel = 
@@ -13,4 +14,5 @@ export const createEmptyModel =
     BirthDate: new Date(Date.now()),
     DisplayName: "",
     Bio: "",
+    ProfilePicture: null,
   });
