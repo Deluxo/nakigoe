@@ -6,13 +6,6 @@ import { RegisterModel, AuthModel, User } from "@/models";
 import { LoginModel } from "@/models/auth/login-model";
 import { StorageService } from "@/services/storage-service";
 
-function formatInputData(data: string | Date | File | null) {
-  if (data instanceof Date) return data.toString();
-  if (!data) return "";
-
-  return data;
-}
-
 @Module
 export default class Auth extends VuexModule {
   private Token = StorageService.Token;
@@ -56,15 +49,7 @@ export default class Auth extends VuexModule {
   }
   @Action({ rawError: true })
   async Register(user: RegisterModel) {
-    const formData = new FormData();
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const [key, value] of Object.entries(user)) {
-      const data = formatInputData(value);
-      formData.append(key, data);
-    }
-
-    const auth = await apiService.Post("/register", formData);
+    const auth = await apiService.Post("/register", user);
     
     if (auth.status !== 200) {
       return auth.text();

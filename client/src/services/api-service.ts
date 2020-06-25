@@ -6,12 +6,12 @@ import { API_URL } from "@/config/config";
 export type RequestData = {
   endpoint: string; 
   method: HttpMethods; 
-  body?: any;
+  body?: object;
 }
 
 export class ApiService {
   private headers = {
-    "Content-Type": "application/json",
+    // "Content-Type": "multipart/form-data",
     Authorization: "",
   }
 
@@ -21,9 +21,34 @@ export class ApiService {
     this.headers.Authorization = `Bearer ${value}`;
   }
 
+  private formatInputData(data: string | Date | File | null) {
+    if (data instanceof Date) return data.toString();
+    if (!data) return "";
+  
+    return data;
+  }
+
+  private convertToFormData(input: object) {
+    const formData = new FormData();
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [key, value] of Object.entries(input)) {
+      const v = this.formatInputData(value);
+      formData.append(key, v);
+    }
+
+    return formData;
+  }
+  
+
   private fetch(request: RequestData): Promise<Response> {
-    const body = 
-      request.body ? JSON.stringify(request.body) : null;
+    if (!request.body) {
+      throw Error(`No data has been supplied for ${request.endpoint}`);      
+    }
+
+    const body = this.convertToFormData(request.body);
+
+    console.log(body);
 
     return fetch(`${this.baseendpoint}${request.endpoint}`, {
       method: request.method.toString(), 
