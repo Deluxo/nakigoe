@@ -28,8 +28,6 @@ namespace Server.Controllers
       if (userExists)
         return Unauthorized("Username has already been taken");
 
-      Console.WriteLine(registerModel.ProfilePicture.Headers);
-
       var token = _userService.Register(registerModel);
 
       return Ok(token);
