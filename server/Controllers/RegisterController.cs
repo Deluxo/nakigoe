@@ -16,9 +16,12 @@ namespace Server.Controllers
   public class RegisterController : ControllerBase
   {
     readonly IUSerService _userService;
-    public RegisterController(IUSerService userService)
+    readonly IFileService _fileService;
+    public RegisterController(IUSerService userService, IFileService fileService)
     {
       _userService = userService;
+      _fileService = fileService;
+
     }
 
     [HttpPost]
@@ -27,6 +30,8 @@ namespace Server.Controllers
       var userExists = _userService.IfUserExists(registerModel.UserName);
       if (userExists)
         return Unauthorized("Username has already been taken");
+
+      _fileService.SaveProfilePic(registerModel.ProfilePicture);
 
       var token = _userService.Register(registerModel);
 

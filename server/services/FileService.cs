@@ -11,6 +11,7 @@ using Server.Models.InputModels;
 using Server.Models.OutputModels;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Server.Services
 {
@@ -18,7 +19,7 @@ namespace Server.Services
   {
     string ProfilePicDir { get; set; }
 
-    void SaveProfilePic(IFormFile file);
+    Task<string> SaveProfilePic(IFormFile file);
     void CreateDirectories();
   }
 
@@ -29,13 +30,19 @@ namespace Server.Services
 
     public void CreateDirectories()
     {
-      // Create folder to store profile pics
       if (!Directory.Exists(ProfilePicDir))
         Directory.CreateDirectory(ProfilePicDir);
     }
-    public void SaveProfilePic(IFormFile file)
+    public async Task<string> SaveProfilePic(IFormFile file)
     {
+      var newName = file.FileName; // TODO: Change to like, guid or something
+      var newPath = Path.Combine(ProfilePicDir, newName);
+      using (var fileStream = new FileStream(newPath, FileMode.Create))
+      {
+        await file.CopyToAsync(fileStream);
+      }
 
+      return newName;
     }
   }
 
