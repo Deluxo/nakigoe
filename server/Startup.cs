@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Server.Services;
+using System.IO;
 
 namespace Server
 {
@@ -53,6 +54,7 @@ namespace Server
       });
 
       services.AddScoped<IUSerService, UserService>();
+      services.AddSingleton<IFileService>(FileServiceFactory.Create(Configuration["ProfilePicDir"]));
 
       services
         .AddControllers()
@@ -70,7 +72,7 @@ namespace Server
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration config)
     {
       if (env.IsDevelopment())
       {
