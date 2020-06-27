@@ -9,5 +9,6 @@ namespace Server.Models.OutputModels
     public string DisplayName { get; set; }
     public string Bio { get; set; }
     public string Token { get; set; }
+    public string ProfilePic { get; set; }
   }
 }

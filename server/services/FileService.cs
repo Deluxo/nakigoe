@@ -37,6 +37,7 @@ namespace Server.Services
     {
       var newName = file.FileName; // TODO: Change to like, guid or something
       var newPath = Path.Combine(ProfilePicDir, newName);
+      // TODO: Handle multiple files uploaded and stuff
       using (var fileStream = new FileStream(newPath, FileMode.Create))
       {
         await file.CopyToAsync(fileStream);

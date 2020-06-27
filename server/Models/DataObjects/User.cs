@@ -19,6 +19,8 @@ namespace Models.DataObjects
 
     public List<FollowedUser> Following { get; set; }
 
+    public string ProfilePic { get; set; }
+
     public static explicit operator AuthModel(User model) =>
       new AuthModel
       {

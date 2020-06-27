@@ -25,17 +25,17 @@ namespace Server.Controllers
     }
 
     [HttpPost]
-    public IActionResult Post([FromForm] RegisterModel registerModel)
+    public async Task<IActionResult> Post([FromForm] RegisterModel registerModel)
     {
       var userExists = _userService.IfUserExists(registerModel.UserName);
       if (userExists)
         return Unauthorized("Username has already been taken");
 
-      _fileService.SaveProfilePic(registerModel.ProfilePicture);
+      var profilePic = await _fileService.SaveProfilePic(registerModel.ProfilePicture);
+      var user = _userService.Register(registerModel);
+      user.ProfilePic = profilePic;
 
-      var token = _userService.Register(registerModel);
-
-      return Ok(token);
+      return Ok(user);
     }
   }
 }
