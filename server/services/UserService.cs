@@ -62,8 +62,6 @@ namespace Server.Services
         Bio = registerModel.Bio
       };
 
-      // TODO: Handle profile pic
-
       _context.Users.Add(user);
       _context.SaveChangesAsync();
 
