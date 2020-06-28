@@ -37,7 +37,8 @@ namespace Server.Services
     private string GenerateProfilePicName(string fileName)
     {
       var extension = Path.GetExtension(fileName);
-      return $"{Guid.NewGuid()}{extension}";
+      var newName = Guid.NewGuid();
+      return $"{newName}{extension}";
     }
 
     public async Task<string> SaveProfilePic(IFormFile file)
