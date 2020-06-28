@@ -33,9 +33,17 @@ namespace Server.Services
       if (!Directory.Exists(ProfilePicDir))
         Directory.CreateDirectory(ProfilePicDir);
     }
+
+    private string GenerateProfilePicName(string fileName)
+    {
+      var extension = Path.GetExtension(fileName);
+      return $"{Guid.NewGuid()}.{extension}";
+    }
+
     public async Task<string> SaveProfilePic(IFormFile file)
     {
-      var newName = file.FileName; // TODO: Change to like, guid or something
+
+      var newName = GenerateProfilePicName(file.FileName);
       var newPath = Path.Combine(ProfilePicDir, newName);
       // TODO: Handle multiple files uploaded and stuff
       using (var fileStream = new FileStream(newPath, FileMode.Create))
