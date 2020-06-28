@@ -22,7 +22,9 @@ namespace Server.Services
         Password = BCrypt.Net.BCrypt.HashPassword("admin"),
         RegisteredAt = DateTime.Now,
         DisplayName = "一番アドミン",
-        BirthDate = DateTime.Now
+        BirthDate = DateTime.Now,
+        Bio = "All hail me",
+        ProfilePic = "admin.png"
       };
 
       context.Users.Add(user);
