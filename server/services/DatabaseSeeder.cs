@@ -18,7 +18,7 @@ namespace Server.Services
       var user = new User
       {
         Id = Guid.NewGuid(),
-        UserName = "Admin",
+        UserName = "admin",
         Password = BCrypt.Net.BCrypt.HashPassword("admin"),
         RegisteredAt = DateTime.Now,
         DisplayName = "一番アドミン",
