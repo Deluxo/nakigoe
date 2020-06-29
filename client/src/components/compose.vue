@@ -2,7 +2,7 @@
   <form class="flex" id="post">
     <!-- Picture -->
     <section class="w-3/12">
-      <img src="http://placekitten.com/200/200" alt="Username" class="object-scale-down" />
+      <img :src="`/p/${user.ProfilePic}`" alt="Username" class="object-scale-down" />
     </section>
 
     <!-- Post -->
@@ -33,10 +33,18 @@ img {
 }
 </style>
 
-<script>
+<script lang="ts">
 // @ is an alias to /src
 import { Component, Vue } from "vue-property-decorator";
+import { mapGetters } from "vuex";
+import { User } from "@/models";
 
-@Component
-export default class Compose extends Vue {}
+@Component({
+  computed: {
+    ...mapGetters(["user"]),
+  },
+})
+export default class Compose extends Vue {
+  user!: User;
+}
 </script>
