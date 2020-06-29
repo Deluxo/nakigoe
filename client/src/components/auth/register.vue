@@ -2,7 +2,7 @@
   <form>
     <h2 class="text-xl font-bold">Create your account</h2>
 
-    <section class="user-details" v-show="page == 0">
+    <section class="inputs user-details" v-show="page == 0">
       <h3 class="font-bold">First we need some login details</h3>
 
       <InputComponent
@@ -22,7 +22,7 @@
       />
     </section>
 
-    <section class="personal-details" v-show="page == 1">
+    <section class="inputs personal-details" v-show="page == 1">
       <h3 class="font-bold">Now for some information about you</h3>
 
       <InputComponent label="Name" placeholder="Display name" v-model="model.DisplayName" limit="25" />
@@ -35,7 +35,7 @@
       />
     </section>
 
-    <section class="bio" v-show="page == 2">
+    <section class="inputs bio" v-show="page == 2">
       <h3>And finally a good profile picture and a description of yourself</h3>
 
 
@@ -68,6 +68,7 @@
 .picture {
   width: 100px;
   height: 100px;
+  margin: 0px auto; // TODO: May be centering isn't the best look
 }
 </style>
 
