@@ -9,6 +9,7 @@ using Server.Models.InputModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Server.Data;
+using Models.DataObjects;
 
 namespace Server.Controllers
 {
@@ -24,17 +25,6 @@ namespace Server.Controllers
     {
       _userService = userService;
       _userContext = userContext;
-    }
-
-    [Authorize]
-    [HttpGet]
-    public IActionResult get()
-    {
-      // Gets the user id and then finds the user
-      var test = User.Identity.Name;
-      var user =
-        _userContext.Users.FirstOrDefault(user => user.Id.Equals(test));
-      return Ok(test);
     }
 
     [AllowAnonymous]
