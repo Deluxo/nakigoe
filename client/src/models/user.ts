@@ -6,4 +6,5 @@ export type User = {
   BirthDate: Date;
   DisplayName: string;
   Bio: string;
+  ProfilePic: string;
 }

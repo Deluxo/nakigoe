@@ -7,4 +7,5 @@ export type AuthModel = {
   DisplayName: string;
   Bio: string;
   Token: string;
+  ProfilePic: string;
 }

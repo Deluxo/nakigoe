@@ -27,7 +27,8 @@ namespace Models.DataObjects
         UserName = model.UserName,
         BirthDate = model.BirthDate,
         DisplayName = model.DisplayName,
-        Bio = model.Bio
+        Bio = model.Bio,
+        ProfilePic = model.ProfilePic
       };
   }
 }
