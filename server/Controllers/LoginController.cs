@@ -29,7 +29,7 @@ namespace Server.Controllers
 
     [AllowAnonymous]
     [HttpPost]
-    public IActionResult Post([FromBody] LoginModel authModel)
+    public IActionResult Post([FromForm] LoginModel authModel)
     {
       var auth = _userService.Authenticate(authModel.UserName, authModel.Password);
 
