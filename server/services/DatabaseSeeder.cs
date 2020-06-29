@@ -24,7 +24,7 @@ namespace Server.Services
         DisplayName = "一番アドミン",
         BirthDate = DateTime.Now,
         Bio = "All hail me",
-        ProfilePic = "admin.png"
+        ProfilePic = "admin.jpg"
       };
 
       context.Users.Add(user);
