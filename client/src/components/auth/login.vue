@@ -7,8 +7,8 @@
     <InputComponent 
       class="input"
       label="Username"
-       v-model="model.UserName"
-       placeholder="Username"
+      v-model="model.UserName"
+      placeholder="Username"
       />
       
     <InputComponent 
