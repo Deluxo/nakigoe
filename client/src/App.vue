@@ -6,7 +6,7 @@
     <main v-else class="flex w-full">
       <Navigation class="w-1/5 bg-gray-300" />
 
-      <section class="w-4/5 bg-gray-100">
+      <section class="w-4/5">
         <router-view />
       </section>
     </main>
