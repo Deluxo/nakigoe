@@ -36,7 +36,6 @@
 
 .profile-picture-container {
   @apply w-1/12;
-  // @apply p-4;
 
   img {
     @apply w-16;
