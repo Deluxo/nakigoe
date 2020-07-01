@@ -19,7 +19,10 @@
       </div>
 
       <section class="buttons">
-        <div>Icons</div>
+        <div class=icons>
+          <Icon 
+            icon="photo"/>
+        </div>
         <div>
           <button class="button button-blue">鳴き声する</button>
         </div>
@@ -70,8 +73,12 @@
 import { Component, Vue } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 import { User } from "@/models";
+import Icon from "@/components/ui/icon.vue";
 
 @Component({
+  components: {
+    Icon,
+  },
   computed: {
     ...mapGetters(["user"]),
   },
