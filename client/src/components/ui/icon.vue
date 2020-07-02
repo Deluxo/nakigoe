@@ -16,7 +16,6 @@
 .i-container {
   @apply p-2;
   @apply rounded-full;
-  @apply flex;
 
   &:hover {
     @apply bg-gray-500;
@@ -25,7 +24,7 @@
   .i-image {
     @apply inline-block;
     @apply align-middle;
-    width: 20px; // TODO: Maybe beneralize this?
+    height: 1rem;
   }
 
   .i-text {
