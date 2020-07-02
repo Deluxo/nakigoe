@@ -16,6 +16,7 @@
 .i-container {
   @apply p-2;
   @apply rounded-full;
+  @apply flex;
 
   &:hover {
     @apply bg-gray-500;
@@ -30,6 +31,8 @@
   .i-text {
     @apply inline-block;
     @apply align-middle;
+
+    @apply ml-2;
   }
 }
 </style>
