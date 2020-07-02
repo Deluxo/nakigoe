@@ -2,7 +2,7 @@
   <div class="i-container">
     <img 
       class="i-image"
-      :src="`/icons/${Icon}.png`" 
+      :src="`/icons/${Icon}.svg`" 
       :alt="Icon">
     <p 
       v-if="text"
