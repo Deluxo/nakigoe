@@ -1,7 +1,7 @@
 <template>
   <section class="home">
     <!-- The write a new post thing -->
-    <Compose class="bg-gray-500" />
+    <Compose />
 
     <!-- Posts should then go here -->
   </section>
