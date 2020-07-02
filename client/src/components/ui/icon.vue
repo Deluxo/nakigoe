@@ -14,13 +14,17 @@
 
 <style lang="scss" scoped>
 .i-container {
-  // @apply flex;
-  // @apply content-center;
+  @apply p-2;
+  @apply rounded-full;
+
+  &:hover {
+    @apply bg-gray-500;
+  }
 
   .i-image {
     @apply inline-block;
     @apply align-middle;
-    width: 25px; // TODO: Maybe beneralize this?
+    width: 20px; // TODO: Maybe beneralize this?
   }
 
   .i-text {
