@@ -21,7 +21,8 @@
       <section class="buttons">
         <div class=icons>
           <Icon 
-            icon="photo"/>
+            icon="photo"
+            @click="addImages"/>
         </div>
         <div>
           <button class="button button-blue">鳴き声する</button>
@@ -85,5 +86,9 @@ import Icon from "@/components/ui/icon.vue";
 })
 export default class Compose extends Vue {
   user!: User;
+
+  addImages() {
+    
+  }
 }
 </script>
