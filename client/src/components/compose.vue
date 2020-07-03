@@ -9,14 +9,18 @@
 
     <!-- Post -->
     <section class="posting-container">
-      <div>
+      <section class="input-container">
         <textarea
           class="input"
           name="body"
           form="post"
           placeholder="Play sound of bird"
         />
-      </div>
+      </section>
+
+      <section class="images">
+        
+      </section>
 
       <section class="buttons">
         <div class=icons>
