@@ -25,7 +25,9 @@
           ref="image-input"
           type="file" 
           name="files" 
-          class="hidden">
+          class="hidden"
+          @change="imageSelected"
+          multiple>
       </section>
 
       <section class="buttons">
@@ -108,6 +110,24 @@ export default class Compose extends Vue {
 
   addImages() {
     this.imageInput.click();
+  }
+
+  imageSelected() {
+    const { files } = this.imageInput;
+    if (files === null) return; 
+
+    const images = [...files];
+
+    if (files.length > 4) {
+      console.log("Too many files");
+    }
+
+    const validMediaTypes = /(video|image)\//;
+    const fileTypes = images.map(file => file.type.match(validMediaTypes)![0]);
+    const uniqueTypes = new Set(fileTypes); 
+
+    if (uniqueTypes.size > 1)
+      console.log("Image and video uploaded");
   }
 }
 </script>
