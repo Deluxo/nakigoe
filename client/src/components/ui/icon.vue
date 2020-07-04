@@ -2,8 +2,8 @@
   <div class="i-container" @click="click">
     <img 
       class="i-image"
-      :src="`/icons/${Icon}.svg`" 
-      :alt="Icon">
+      :src="`/icons/${icon}.svg`" 
+      :alt="icon">
     <p 
       v-if="text"
       class="i-text">
@@ -56,7 +56,7 @@ export default class Icon extends Vue {
     type: String,
     validator: icon => validIcons.findIndex(validIcon => icon === validIcon) !== -1,
   })
-  Icon!: string;
+  icon!: string;
 
   // This is aparrently needed for the click to work
   click() {
