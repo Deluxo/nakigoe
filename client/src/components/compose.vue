@@ -11,6 +11,7 @@
     <section class="posting-container">
       <section class="input-container">
         <textarea
+          v-bind="post.Body"
           class="input"
           name="body"
           form="post"
@@ -20,6 +21,7 @@
 
       <section class="images">
         <input 
+          v-bind="post.Media"
           ref="image-input"
           type="file" 
           name="files" 
@@ -83,6 +85,7 @@ import { Component, Vue, Ref } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 import { User } from "@/models";
 import Icon from "@/components/ui/icon.vue";
+import { PostingModel, createEmpty } from "@/models/post/PostingModel";
 
 @Component({
   components: {
@@ -94,6 +97,11 @@ import Icon from "@/components/ui/icon.vue";
 })
 export default class Compose extends Vue {
   user!: User;
+  post!: PostingModel;
+
+  created() {
+    this.post = createEmpty();
+  }
 
   @Ref("image-input")
   imageInput!: HTMLInputElement;
