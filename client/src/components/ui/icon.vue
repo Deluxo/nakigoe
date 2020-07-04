@@ -1,5 +1,5 @@
 <template>
-  <div class="i-container">
+  <div class="i-container" @click="click">
     <img 
       class="i-image"
       :src="`/icons/${Icon}.svg`" 
@@ -57,6 +57,11 @@ export default class Icon extends Vue {
     validator: icon => validIcons.findIndex(validIcon => icon === validIcon) !== -1,
   })
   Icon!: string;
+
+  // This is aparrently needed for the click to work
+  click() {
+    this.$emit("click");
+  }
 
   @Prop({
     type: String,

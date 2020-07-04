@@ -19,7 +19,11 @@
       </section>
 
       <section class="images">
-        
+        <input 
+          ref="image-input"
+          type="file" 
+          name="files" 
+          class="hidden">
       </section>
 
       <section class="buttons">
@@ -75,7 +79,7 @@
 
 <script lang="ts">
 // @ is an alias to /src
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Ref } from "vue-property-decorator";
 import { mapGetters } from "vuex";
 import { User } from "@/models";
 import Icon from "@/components/ui/icon.vue";
@@ -91,8 +95,11 @@ import Icon from "@/components/ui/icon.vue";
 export default class Compose extends Vue {
   user!: User;
 
+  @Ref("image-input")
+  imageInput!: HTMLInputElement;
+
   addImages() {
-    
+    this.imageInput.click();
   }
 }
 </script>
