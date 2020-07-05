@@ -19,6 +19,7 @@ import {
 @Component
 export default class ComposeMedia extends Vue {
   private media!: File[];
+  private validMediaTypes = /(video|image)\//;
 
   @Ref("image-input")
   imageInput!: HTMLInputElement;
@@ -27,7 +28,7 @@ export default class ComposeMedia extends Vue {
     this.media = [];
   }
 
-  click() {
+  addImages() {
     this.imageInput.click();
   }
 
@@ -41,10 +42,34 @@ export default class ComposeMedia extends Vue {
       console.log("Too many files");
     }
 
+    // Check for mimetypes that are not image or video
+    const mimeTypes = this.getMimeTypes(images);
+    const invalidMimeTypeExists = this.containsInvalidMimetypes(mimeTypes);
+    if (invalidMimeTypeExists) {
+      console.log("User needs to upload only images or video");
+    }
+
+
     const validTypes = this.uniqueTypes(images);
     
     if (validTypes.size > 1)
       console.log("Image and video uploaded");
+
+
+    console.log("やった");
+    }
+
+    getMimeTypes(images: File[]) {
+      return images.map(image => image.type);
+    }
+
+    containsInvalidMimetypes(mimeTypes: string[]) {
+      const notValidMimeType = 
+        (mimeType: string) => !this.validMediaTypes.test(mimeType);
+      
+      const invalidMimeType = mimeTypes.find(notValidMimeType);
+      
+      return !!invalidMimeType;
     }
 
     uniqueTypes(images: File[]) {
