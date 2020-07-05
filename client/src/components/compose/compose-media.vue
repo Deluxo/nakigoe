@@ -36,7 +36,7 @@ export default class ComposeMedia extends Vue {
     const { files } = this.imageInput;
     if (files === null) return; 
 
-    const images = [...files];
+    const images = [...files]; // FileList -> Array
 
     if (files.length > 4) {
       console.log("Too many files");
