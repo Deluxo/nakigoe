@@ -20,14 +20,7 @@
       </section>
 
       <section class="images">
-        <input 
-          v-bind="post.Media"
-          ref="image-input"
-          type="file" 
-          name="files" 
-          class="hidden"
-          @change="imageSelected"
-          multiple>
+        <Media ref="media-container"/>
       </section>
 
       <section class="buttons">
@@ -88,10 +81,12 @@ import { mapGetters } from "vuex";
 import { User } from "@/models";
 import Icon from "@/components/ui/icon.vue";
 import { PostingModel, createEmpty } from "@/models/post/PostingModel";
+import Media from "@/components/compose/compose-media.vue";
 
 @Component({
   components: {
     Icon,
+    Media,
   },
   computed: {
     ...mapGetters(["user"]),
@@ -101,33 +96,15 @@ export default class Compose extends Vue {
   user!: User;
   post!: PostingModel;
 
+  @Ref("media-container")
+  mediaContainer!: Media;
+
   created() {
     this.post = createEmpty();
   }
 
-  @Ref("image-input")
-  imageInput!: HTMLInputElement;
-
   addImages() {
-    this.imageInput.click();
-  }
-
-  imageSelected() {
-    const { files } = this.imageInput;
-    if (files === null) return; 
-
-    const images = [...files];
-
-    if (files.length > 4) {
-      console.log("Too many files");
-    }
-
-    const validMediaTypes = /(video|image)\//;
-    const fileTypes = images.map(file => file.type.match(validMediaTypes)![0]);
-    const uniqueTypes = new Set(fileTypes); 
-
-    if (uniqueTypes.size > 1)
-      console.log("Image and video uploaded");
+    this.mediaContainer.addImages();
   }
 }
 </script>
