@@ -42,19 +42,19 @@ export default class ComposeMedia extends Vue {
       console.log("Too many files");
     }
 
-    // Check for mimetypes that are not image or video
     const mimeTypes = this.getMimeTypes(images);
+
+    // Check for mimetypes that are not image or video
     const invalidMimeTypeExists = this.containsInvalidMimetypes(mimeTypes);
     if (invalidMimeTypeExists) {
       console.log("User needs to upload only images or video");
     }
 
-
     const validTypes = this.uniqueTypes(images);
     
-    if (validTypes.size > 1)
+    if (validTypes.size > 1) {
       console.log("Image and video uploaded");
-
+    }
 
     console.log("やった");
     }
